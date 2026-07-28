@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #10b981; /* Green accent */
+  --color-dark: #111827;
+  --color-light: #f3f4f6;
+  --font-sans: "Inter", "Roboto", sans-serif;
+}
+
+@layer base {
+  html, body {
+    @apply antialiased text-gray-900 bg-white;
+  }
+}
