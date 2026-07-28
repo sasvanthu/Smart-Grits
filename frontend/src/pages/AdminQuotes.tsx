@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, Trash2, CheckCircle, Clock } from 'lucide-react';
+import { Eye, Trash2 } from 'lucide-react';
 
 interface QuoteItem {
   quantity: number;

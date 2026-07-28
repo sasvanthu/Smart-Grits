@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, ShieldCheck, Factory, Award, CheckCircle, Phone } from 'lucide-react';
 import { CATEGORIES, CLIENTS, POLISHED_CONCRETE, PRODUCTS } from '../data/brochureData';
@@ -11,30 +11,7 @@ const HERO_IMAGES = [
 ];
 
 const Home = () => {
-  const { scrollY } = useScroll();
-  const logoScale = useTransform(scrollY, [0, 400], [1, 0.15]);
-  const logoOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const logoY = useTransform(scrollY, [0, 400], [0, -250]);
-  const logoX = useTransform(scrollY, [0, 400], [0, -150]);
 
-  // --- 3D Interactive Mouse Tracking ---
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  const invRotateX = useTransform(smoothMouseY, [-0.5, 0.5], [-10, 10]);
-  const invRotateY = useTransform(smoothMouseX, [-0.5, 0.5], [15, -15]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
 
   const featuredProducts = PRODUCTS.slice(0, 4);
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
@@ -51,7 +28,6 @@ const Home = () => {
       {/* Hero Section */}
       <section 
         className="relative h-screen min-h-[700px] flex items-center justify-center bg-dark overflow-hidden"
-        onMouseMove={handleMouseMove}
         style={{ perspective: '2000px' }}
       >
         <div className="absolute inset-0 z-0">
