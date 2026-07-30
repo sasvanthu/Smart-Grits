@@ -25,7 +25,6 @@ interface Stats {
   totalProducts: number;
   newRequests: number;
   totalCustomers: number;
-  websiteVisitors: string;
 }
 
 const AdminDashboard = () => {
@@ -115,7 +114,6 @@ const AdminDashboard = () => {
     { title: 'Total Products', value: stats?.totalProducts || 0, icon: Package, color: 'bg-blue-500' },
     { title: 'New Quote Requests', value: stats?.newRequests || 0, icon: FileText, color: 'bg-primary' },
     { title: 'Total Customers', value: stats?.totalCustomers || 0, icon: Users, color: 'bg-indigo-500' },
-    { title: 'Website Visitors (M)', value: stats?.websiteVisitors || '0', icon: Eye, color: 'bg-orange-500' },
   ];
 
   return (
@@ -126,7 +124,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {statCards.map((stat, idx) => (
           <div key={idx} className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 flex items-center">
             <div className={`${stat.color} w-14 h-14 rounded-full flex items-center justify-center text-white mr-4`}>

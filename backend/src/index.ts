@@ -6,6 +6,7 @@ import quoteRoutes from './routes/quoteRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import customerRoutes from './routes/customerRoutes';
 import galleryRoutes from './routes/galleryRoutes';
+import uploadRoutes from './routes/uploadRoutes';
 import contactRoutes from './routes/contactRoutes';
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use('/api/quotes', quoteRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/upload', uploadRoutes);
 app.use('/api/contact', contactRoutes);
 
 app.get('/', (req: Request, res: Response) => {

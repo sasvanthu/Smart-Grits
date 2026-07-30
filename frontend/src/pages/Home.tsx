@@ -1,11 +1,37 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, ShieldCheck, Factory, Award, CheckCircle } from 'lucide-react';
-import { CATEGORIES, CLIENTS, PRODUCTS, POLISHED_CONCRETE } from '../data/brochureData';
+import { CATEGORIES, CLIENTS, POLISHED_CONCRETE } from '../data/brochureData';
+import { useState, useEffect } from 'react';
 import ScrollStackSection from '../components/ScrollStackSection';
 
+interface DbProduct {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  categories: { name: string } | null;
+  product_images?: { image_url: string }[];
+}
+
 const Home = () => {
-  const featuredProducts = PRODUCTS.slice(0, 4);
+  const [featuredProducts, setFeaturedProducts] = useState<DbProduct[]>([]);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await fetch(`${apiUrl}/api/products`);
+        if (response.ok) {
+          const data = await response.json();
+          setFeaturedProducts(data.filter((p: any) => p.is_featured).slice(0, 4));
+        }
+      } catch (err) {
+        console.error('Failed to fetch featured products', err);
+      }
+    };
+    fetchFeatured();
+  }, []);
   const { scrollYProgress } = useScroll();
   const beamHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   
@@ -336,19 +362,21 @@ const Home = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
                   <div className="relative overflow-hidden h-56 bg-gray-100">
                     <img
-                      src={product.image}
+                      src={product.product_images?.[0]?.image_url || 'https://via.placeholder.com/800x800'}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800';
+                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x800';
                       }}
                     />
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-dark text-xs font-black px-3 py-1.5 uppercase rounded-lg shadow-lg filter drop-shadow-md z-20">
-                      {product.categorySlug.replace('-', ' ')}
+                  </div>
+                  <div className="absolute top-4 left-4">
+                    <div className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-dark uppercase tracking-wider shadow-sm">
+                      {product.categories?.name || 'Product'}
                     </div>
                   </div>
-                  <div className="p-6 relative z-20 bg-white">
-                    <h3 className="font-extrabold text-dark text-lg leading-tight mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3rem]">{product.name}</h3>
+                  <div className="p-8">
+                    <h3 className="text-xl font-bold text-dark mb-2 uppercase tracking-wide group-hover:text-primary transition-colors">{product.name}</h3>
                     <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-6">{product.description}</p>
                     <Link
                       to={`/products/${product.slug}`}

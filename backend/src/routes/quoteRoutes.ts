@@ -27,15 +27,10 @@ router.get('/stats', async (req, res) => {
 
     // Calculate unique emails for "Total Customers" approximation
     const customersSet = new Set(uniqueCustomers?.map((c: any) => c.email));
-    
-    // Approximation for website visitors (mocked since no analytics)
-    const websiteVisitors = '14.2k';
-
     res.json({
       totalProducts: totalProducts || 0,
       newRequests: newRequests || 0,
-      totalCustomers: customersSet.size,
-      websiteVisitors
+      totalCustomers: customersSet.size
     });
 
   } catch (error: any) {
@@ -102,6 +97,20 @@ router.post('/', async (req, res) => {
         .insert(quoteItems);
 
       if (itemsError) throw itemsError;
+    }
+
+    // Add to Customers CRM panel
+    try {
+      await supabase.from('customers').insert([{
+        full_name: fullName,
+        company_name: companyName || null,
+        email: email,
+        phone: phone || null,
+        status: 'Lead',
+        notes: `Product Quote Request\nRemarks: ${remarks || 'None'}`
+      }]);
+    } catch (dbError) {
+      console.error('Failed to add quote inquiry to customers CRM:', dbError);
     }
 
     res.status(201).json({ success: true, quoteId });

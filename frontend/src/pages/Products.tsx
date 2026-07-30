@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CATEGORIES } from '../data/brochureData';
 import { Search, ChevronRight } from 'lucide-react';
 
 interface DbProduct {
@@ -20,26 +19,36 @@ const Products = () => {
   const [products, setProducts] = useState<DbProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
+
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProductsAndCategories = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        const response = await fetch(`${apiUrl}/api/products`);
-        if (response.ok) {
-          const data = await response.json();
-          setProducts(data);
+        const [productsRes, categoriesRes] = await Promise.all([
+          fetch(`${apiUrl}/api/products`),
+          fetch(`${apiUrl}/api/categories`)
+        ]);
+
+        if (productsRes.ok) {
+          const pData = await productsRes.json();
+          setProducts(pData);
+        }
+        if (categoriesRes.ok) {
+          const cData = await categoriesRes.json();
+          setCategories(cData);
         }
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setIsLoading(false);
       }
     };
-    fetchProducts();
+    fetchProductsAndCategories();
   }, []);
 
   const filteredProducts = products.filter((p) => {
-    const activeCatObj = CATEGORIES.find(c => c.slug === activeCategory);
+    const activeCatObj = categories.find(c => c.slug === activeCategory);
     const activeCatName = activeCatObj ? activeCatObj.name : null;
 
     const matchesCategory = activeCategory === 'all' || p.categories?.name === activeCatName;
@@ -92,7 +101,7 @@ const Products = () => {
             >
               All
             </button>
-            {CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.slug)}

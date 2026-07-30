@@ -28,6 +28,7 @@ const AdminProducts = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', slug: '', description: '', category_id: '', image_url: '' });
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -76,6 +77,28 @@ const AdminProducts = () => {
       image_url: product.product_images?.[0]?.image_url || ''
     });
     setShowModal(true);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    const data = new FormData();
+    data.append('image', file);
+
+    try {
+      setUploadingImage(true);
+      const response = await fetch('http://localhost:5000/api/upload', {
+        method: 'POST',
+        body: data,
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Failed to upload image');
+      setFormData({ ...formData, image_url: result.url });
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -152,8 +175,14 @@ const AdminProducts = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Image URL</label>
-                  <input type="text" className="w-full border p-2 rounded" value={formData.image_url} onChange={e => setFormData({...formData, image_url: e.target.value})} placeholder="https://..." />
+                  <label className="block text-sm font-medium mb-1">Product Image</label>
+                  <input type="file" accept="image/*" className="w-full border p-2 rounded" onChange={handleImageUpload} disabled={uploadingImage} />
+                  {uploadingImage && <span className="text-sm text-blue-500">Uploading...</span>}
+                  {formData.image_url && !uploadingImage && (
+                    <div className="mt-2">
+                      <img src={formData.image_url} alt="Preview" className="h-16 w-16 object-cover rounded" />
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Category</label>

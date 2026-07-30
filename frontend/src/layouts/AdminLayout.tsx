@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Package, Folders, FileText, Image, Users, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Folders, Users, Settings, LogOut } from 'lucide-react';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -30,15 +30,8 @@ const AdminLayout = () => {
           <Link to="/admin/categories" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded hover:bg-gray-800 transition-colors">
             <Folders className="w-5 h-5" /> Categories
           </Link>
-          <Link to="/admin/quotes" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded hover:bg-gray-800 transition-colors relative">
-            <FileText className="w-5 h-5" /> Orders
-            <span className="absolute right-4 bg-primary text-white text-xs px-2 py-0.5 rounded-full">3</span>
-          </Link>
           <Link to="/admin/customers" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded hover:bg-gray-800 transition-colors">
             <Users className="w-5 h-5" /> Customers
-          </Link>
-          <Link to="/admin/gallery" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded hover:bg-gray-800 transition-colors">
-            <Image className="w-5 h-5" /> Gallery
           </Link>
           <Link to="/admin/settings" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded hover:bg-gray-800 transition-colors">
             <Settings className="w-5 h-5" /> Settings

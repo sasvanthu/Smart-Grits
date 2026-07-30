@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import nodemailer from 'nodemailer';
+import { supabase } from '../config/supabase';
 
 const router = Router();
 
@@ -42,6 +43,20 @@ ${message}
       console.warn('SMTP_USER or SMTP_PASS is not configured in .env. Email was NOT sent, but simulating success.');
       console.log('Would have sent:', mailOptions);
       return res.status(200).json({ success: true, message: 'Simulated email sent (Missing SMTP credentials)' });
+    }
+
+    // Add to Customers CRM panel
+    try {
+      await supabase.from('customers').insert([{
+        full_name: `${firstName} ${lastName}`.trim(),
+        company_name: company || null,
+        email: email,
+        phone: phone || null,
+        status: 'Lead',
+        notes: `Contact Form Inquiry\nSubject: ${subject}\nMessage: ${message}`
+      }]);
+    } catch (dbError) {
+      console.error('Failed to add contact inquiry to customers CRM:', dbError);
     }
 
     await transporter.sendMail(mailOptions);

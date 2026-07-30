@@ -13,9 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminProducts from './pages/AdminProducts';
 import AdminCategories from './pages/AdminCategories';
 import AdminSettings from './pages/AdminSettings';
-import AdminQuotes from './pages/AdminQuotes';
 import AdminCustomers from './pages/AdminCustomers';
-import AdminGallery from './pages/AdminGallery';
 
 function App() {
   return (
@@ -38,9 +36,7 @@ function App() {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="categories" element={<AdminCategories />} />
-          <Route path="quotes" element={<AdminQuotes />} />
           <Route path="customers" element={<AdminCustomers />} />
-          <Route path="gallery" element={<AdminGallery />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
