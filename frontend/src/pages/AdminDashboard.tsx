@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Users, FileText, Package, Eye, X, Mail, Phone, Building, MessageSquare, Edit3 } from 'lucide-react';
+import { Users, FileText, Package, X, Mail, Phone, Building, MessageSquare, Edit3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface QuoteItem {
