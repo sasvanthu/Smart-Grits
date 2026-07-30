@@ -11,4 +11,51 @@
   html, body {
     @apply antialiased text-gray-900 bg-white;
   }
+  
+  /* Hide scrollbar globally */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/* Portrait Lock Warning for Mobile Devices */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  body::before {
+    content: "Please rotate your device to portrait mode for the best experience.";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background-color: #111827;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    font-family: "Inter", "Roboto", sans-serif;
+    padding: 2rem;
+    z-index: 2147483647; /* Max z-index to cover everything including React Portal/Splash */
+  }
+  
+  #root {
+    display: none !important;
+  }
 }

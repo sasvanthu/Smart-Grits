@@ -15,10 +15,10 @@ const About = () => {
             className="w-full h-full object-cover opacity-20"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Who We Are</p>
-            <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider mb-4">About SmartGrit</h1>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:pt-40 md:pb-24">
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
+            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Who We Are</p>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider mb-4">About SmartGrit</h1>
             <div className="w-24 h-1 bg-primary mb-6"></div>
             <p className="text-gray-300 max-w-2xl text-lg">
               Over 11 years of R&D in abrasive products. Industrial concrete floor polishing systems made in India.
@@ -28,11 +28,11 @@ const About = () => {
       </div>
 
       {/* About Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Our Story</p>
-            <h2 className="text-3xl font-bold text-dark uppercase mb-4">SmartGrit Polishing System</h2>
+      <section className="py-12 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Our Story</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark uppercase mb-4">SmartGrit Polishing System</h2>
             <div className="w-16 h-1 bg-primary mb-6"></div>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
@@ -50,11 +50,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
+          <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} className="relative transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <img
               src="/brochure-images/ai_ride_on_trowel_1.png"
               alt="SmartGrit Polishing in Action — Peekay Steels"
-              className="w-full h-[400px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl"
+              className="w-full h-64 sm:h-80 lg:h-[400px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl"
             />
             <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 shadow-lg">
               <div className="text-3xl font-bold">11+</div>
@@ -65,15 +65,15 @@ const About = () => {
       </section>
 
       {/* Why Us */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Why Choose SmartGrit</p>
-            <h2 className="text-3xl font-bold text-dark uppercase">Our Promise to You</h2>
+          <div className="text-center mb-10 md:mb-14">
+            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Why Choose SmartGrit</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark uppercase">Our Promise to You</h2>
             <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-[2000px]">
             {[
               { icon: <Factory className="w-8 h-8" />, title: 'Make in India', desc: 'Proudly manufactured in India with world-class quality materials and processes.' },
               { icon: <Award className="w-8 h-8" />, title: 'Quality Products', desc: 'High-quality hard resin bond and qualified diamonds. Consistent, high-quality output in every batch.' },
@@ -82,11 +82,13 @@ const About = () => {
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: "spring", stiffness: 100 }}
-                className="text-center p-10 bg-white rounded-2xl border border-gray-100 hover:border-primary/50 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-4 transition-all duration-500 group relative overflow-hidden"
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                className="text-center p-10 bg-white rounded-2xl border border-gray-100 hover:border-primary/50 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group relative overflow-hidden transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-[0_10px_20px_-5px_rgba(34,197,94,0.5)] group-hover:scale-110 group-hover:-rotate-6 mb-6 transition-all duration-300 relative z-10">
@@ -101,10 +103,10 @@ const About = () => {
       </section>
 
       {/* Vision */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-12 md:py-20 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-semibold uppercase tracking-widest mb-4 text-sm opacity-80">Our Vision</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-relaxed">
+          <p className="font-semibold uppercase tracking-widest mb-4 text-xs sm:text-sm opacity-80">Our Vision</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-relaxed">
             "{ABOUT_CONTENT.vision}"
           </h2>
           <div className="w-16 h-1 bg-white/40 mx-auto"></div>
@@ -112,15 +114,15 @@ const About = () => {
       </section>
 
       {/* Product Technology */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <img src="/brochure-images/WhatsApp Image 2026-07-25 at 11.18.21 AM (1).jpeg" alt="SmartGrit Polishing System Discs" className="w-full h-[450px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl" />
+      <section className="py-12 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: -30, rotateY: -15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+            <img src="/brochure-images/WhatsApp Image 2026-07-25 at 11.18.21 AM (1).jpeg" alt="SmartGrit Polishing System Discs" className="w-full h-64 sm:h-80 lg:h-[450px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl" />
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Product Technology</p>
-            <h2 className="text-3xl font-bold text-dark uppercase mb-4">SmartGrit Diamond Tools</h2>
+          <motion.div initial={{ opacity: 0, x: 30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Product Technology</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark uppercase mb-4">SmartGrit Diamond Tools</h2>
             <div className="w-16 h-1 bg-primary mb-6"></div>
             <p className="text-gray-600 leading-relaxed mb-4">{ABOUT_CONTENT.productNote}</p>
             <p className="text-gray-600 leading-relaxed mb-6">{ABOUT_CONTENT.productMaterial}</p>
@@ -137,22 +139,24 @@ const About = () => {
       </section>
 
       {/* Polished Concrete Advantages */}
-      <section className="py-20 bg-dark text-white">
+      <section className="py-12 md:py-20 bg-dark text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Why Polished Concrete</p>
-            <h2 className="text-3xl font-bold uppercase">Polished Concrete Advantages</h2>
+          <div className="text-center mb-10 md:mb-14">
+            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Why Polished Concrete</p>
+            <h2 className="text-2xl sm:text-3xl font-bold uppercase">Polished Concrete Advantages</h2>
             <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[2000px]">
             {POLISHED_CONCRETE.advantages.map((adv, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, type: "spring", stiffness: 100 }}
-                className="bg-dark rounded-2xl border border-gray-700 p-8 hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-all duration-500 group relative overflow-hidden"
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.08, type: "spring", stiffness: 100 }}
+                className="bg-dark rounded-2xl border border-gray-700 p-8 hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group relative overflow-hidden transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500"></div>
                 <h3 className="font-bold text-white mb-3 uppercase text-sm tracking-wider group-hover:text-primary transition-colors drop-shadow-md relative z-10">{adv.title}</h3>

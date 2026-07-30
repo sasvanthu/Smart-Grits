@@ -415,17 +415,17 @@ Depending on your floor goals, requirements, and your Industry, SmartGrit will r
 // ─── CLIENTS ─────────────────────────────────────────────────────────────────
 
 export const CLIENTS = [
-  { name: 'KIA Motors', logo: '/brochure-images/page_08_img_2.jpeg' },
-  { name: 'CEAT', logo: '/brochure-images/page_08_img_3.png' },
-  { name: 'ESR', logo: '/brochure-images/page_08_img_4.jpeg' },
-  { name: 'Peekay Steel', logo: '/brochure-images/page_08_img_5.jpeg' },
-  { name: 'KisanKraft', logo: '/brochure-images/page_08_img_6.jpeg' },
-  { name: 'POCL', logo: '/brochure-images/page_08_img_7.jpeg' },
-  { name: 'IKEA', logo: '/brochure-images/page_08_img_8.jpeg' },
-  { name: 'IRCC', logo: '/brochure-images/page_08_img_9.jpeg' },
-  { name: 'Mourya Aquex', logo: '/brochure-images/page_08_img_10.jpeg' },
-  { name: 'AKG', logo: '/brochure-images/page_08_img_11.jpeg' },
-  { name: 'Sprint', logo: '/brochure-images/page_08_img_12.jpeg' },
+  { name: 'KIA Motors', logo: '/brochure-images/page_08_img_2.jpeg', url: 'https://www.kia.com' },
+  { name: 'ESR', logo: '/brochure-images/page_08_img_3.png', url: 'https://www.esr.com' },
+  { name: 'Peekay Steel', logo: '/brochure-images/page_08_img_4.jpeg', url: 'https://www.peekaysteel.com' },
+  { name: 'KisanKraft', logo: '/brochure-images/page_08_img_5.jpeg', url: 'https://www.kisankraft.com' },
+  { name: 'POCL', logo: '/brochure-images/page_08_img_6.jpeg', url: 'https://pocl.co.in' },
+  { name: 'Ambika Cotton', logo: '/brochure-images/page_08_img_7.jpeg', url: 'http://www.acmills.in' },
+  { name: 'IKEA', logo: '/brochure-images/page_08_img_8.jpeg', url: 'https://www.ikea.com' },
+  { name: 'Mourya Aquex', logo: '/brochure-images/page_08_img_9.jpeg', url: 'https://www.mouryaaquex.com' },
+  { name: 'IRCC', logo: '/brochure-images/page_08_img_10.jpeg', url: 'https://www.ircc.in' },
+  { name: 'AKG', logo: '/brochure-images/page_08_img_11.jpeg', url: 'https://www.akg.com' },
+  { name: 'Sprint', logo: '/brochure-images/page_08_img_12.jpeg', url: 'https://www.sprint.com' },
 ];
 
 // ─── PROJECTS ─────────────────────────────────────────────────────────────────

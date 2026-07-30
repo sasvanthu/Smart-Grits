@@ -15,8 +15,8 @@ const Applications = () => {
           />
           <div className="absolute inset-0 bg-dark/60"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:pt-40 md:pb-24">
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Solutions</p>
             <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider mb-4">Services</h1>
             <div className="w-24 h-1 bg-primary mb-6"></div>
@@ -36,15 +36,17 @@ const Applications = () => {
             <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16 perspective-[2000px]">
             {POLISHED_CONCRETE.methods.map((method, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: "spring", stiffness: 100 }}
-                className="bg-dark text-white p-10 rounded-3xl border border-white/10 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] hover:-translate-y-4 hover:border-primary/50 transition-all duration-500 relative overflow-hidden group"
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                className="bg-dark text-white p-10 rounded-3xl border border-white/10 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] hover:border-primary/50 transition-all duration-500 relative overflow-hidden group transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:bg-primary/20 transition-colors duration-500"></div>
                 <div className="text-primary mb-6 transform group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 relative z-10">
@@ -94,9 +96,9 @@ const Applications = () => {
                 </div>
               </div>
               <div className="relative h-full min-h-[400px]">
-                <img 
-                  src="/brochure-images/ai_walk_behind_trowel.png" 
-                  alt="Densification Process" 
+                <img
+                  src="/brochure-images/ai_walk_behind_trowel.png"
+                  alt="Densification Process"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-gray-50/20 to-transparent lg:block hidden"></div>
@@ -115,15 +117,17 @@ const Applications = () => {
             <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 perspective-[2000px]">
             {POLISHED_CONCRETE.advantages.map((adv, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="bg-dark border border-gray-700 p-8 rounded-2xl hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] hover:-translate-y-3 transition-all duration-500 group relative overflow-hidden"
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.07, type: "spring", stiffness: 100 }}
+                className="bg-dark border border-gray-700 p-8 rounded-2xl hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group relative overflow-hidden transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <CheckCircle className="w-8 h-8 text-primary mb-4 transform group-hover:scale-110 transition-transform duration-300 relative z-10" />
@@ -152,15 +156,17 @@ const Applications = () => {
             <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 perspective-[2000px]">
             {POLISHED_CONCRETE.applications.map((app, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-primary/10 border-l-4 border-primary p-5 hover:bg-primary hover:text-white transition-all group"
+                initial={{ opacity: 0, scale: 0.9, rotateX: -15, z: -20 }}
+                whileInView={{ opacity: 1, scale: 1, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 10, rotateY: -10, z: 30 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.05, type: "spring", stiffness: 100 }}
+                className="bg-primary/10 border-l-4 border-primary p-5 hover:bg-primary hover:text-white transition-all group transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <p className="font-bold text-dark group-hover:text-white text-sm uppercase tracking-wide">{app}</p>
               </motion.div>
@@ -181,7 +187,7 @@ const Applications = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-[2000px]">
             {[
               {
                 level: 'Matt Finishing',
@@ -207,11 +213,13 @@ const Applications = () => {
             ].map((opt, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: "spring", stiffness: 100 }}
-                className={`${opt.bg} border-t-4 ${opt.borderColor} p-10 rounded-b-2xl shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-4 transition-all duration-500 group`}
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                className={`${opt.bg} border-t-4 ${opt.borderColor} p-10 rounded-b-2xl shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group transform-gpu`}
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <h3 className="font-extrabold text-dark uppercase text-xl mb-3 group-hover:text-primary transition-colors">{opt.level}</h3>
                 <p className="text-gray-500 text-sm font-medium mb-6">{opt.subtitle}</p>

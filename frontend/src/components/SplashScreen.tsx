@@ -6,6 +6,13 @@ const SplashScreen = () => {
   const [isVideoFinished, setIsVideoFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [videoSrc, setVideoSrc] = useState("/splash_video_processed.mp4");
+
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setVideoSrc("/mobile_splash.mp4");
+    }
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -65,7 +72,7 @@ const SplashScreen = () => {
           >
             <video
               ref={videoRef}
-              src="/splash_video_processed.mp4"
+              src={videoSrc}
               autoPlay
               muted
               playsInline

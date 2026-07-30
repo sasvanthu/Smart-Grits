@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, totalItems, clearCart } = useCart();
@@ -76,16 +77,16 @@ const Cart = () => {
         </div>
 
         {totalItems === 0 ? (
-          <div className="bg-white p-16 text-center rounded-[3rem] border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] max-w-3xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} className="bg-white p-16 text-center rounded-[3rem] border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] max-w-3xl mx-auto transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <h3 className="text-3xl font-black text-dark mb-4 uppercase tracking-wider">Your cart is empty</h3>
             <p className="text-gray-500 mb-10 text-lg">Add products to your cart to place an order.</p>
             <Link to="/products" className="inline-block bg-dark text-white px-10 py-5 font-black uppercase tracking-widest rounded-2xl hover:bg-primary hover:shadow-[0_10px_20px_-10px_rgba(34,197,94,0.6)] hover:-translate-y-1 transition-all duration-300">
               Browse Products
             </Link>
-          </div>
+          </motion.div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
+            <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="lg:col-span-2 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
               <div className="bg-white border border-gray-100 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden">
                 <div className="p-8 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
                   <h2 className="text-xl font-black uppercase tracking-wider text-dark">Selected Products ({totalItems})</h2>
@@ -123,9 +124,9 @@ const Cart = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-1">
+            <motion.div initial={{ opacity: 0, x: 30, rotateY: -15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="lg:col-span-1 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
               <div className="bg-white border border-gray-100 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden lg:sticky lg:top-32">
                 <div className="p-8 border-b border-gray-100 bg-gray-50/50">
                   <h2 className="text-xl font-black uppercase tracking-wider text-dark">Checkout</h2>
@@ -164,7 +165,7 @@ const Cart = () => {
                   </form>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
       </div>

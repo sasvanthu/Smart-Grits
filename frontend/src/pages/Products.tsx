@@ -16,7 +16,7 @@ interface DbProduct {
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   const [products, setProducts] = useState<DbProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +41,7 @@ const Products = () => {
   const filteredProducts = products.filter((p) => {
     const activeCatObj = CATEGORIES.find(c => c.slug === activeCategory);
     const activeCatName = activeCatObj ? activeCatObj.name : null;
-    
+
     const matchesCategory = activeCategory === 'all' || p.categories?.name === activeCatName;
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -49,28 +49,27 @@ const Products = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Page Header */}
-      <div className="relative bg-dark text-white py-32 overflow-hidden rounded-b-[3rem] mb-12 shadow-2xl">
+      <div className="relative bg-dark text-white pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden rounded-b-[3rem] mb-8 md:mb-12 shadow-2xl">
         <div className="absolute inset-0">
           <img src="/brochure-images/ai_polished_concrete_floor.png" alt="SmartGrit Products" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, type: "spring" }} className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-5 py-2 bg-primary/20 border border-primary/50 text-primary text-sm font-bold tracking-widest uppercase mb-6 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] backdrop-blur-sm">
+          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} className="max-w-3xl" style={{ transformStyle: "preserve-3d" }}>
+            <div className="inline-flex items-center gap-2 px-5 py-2 bg-primary/20 border border-primary/50 text-primary text-xs sm:text-sm font-bold tracking-widest uppercase mb-6 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               SmartGrit Product Range
             </div>
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-wider mb-6 drop-shadow-2xl leading-tight">Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300">Products</span></h1>
-            <p className="text-gray-300 text-xl leading-relaxed font-medium drop-shadow-lg max-w-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-wider mb-6 drop-shadow-2xl leading-tight">Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300">Products</span></h1>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-medium drop-shadow-lg max-w-2xl">
               Discover industry-leading grinding & polishing tools. Engineered in India for perfection.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-6 mb-12">
           {/* Search */}
@@ -114,17 +113,20 @@ const Products = () => {
 
         {/* Product Grid */}
         {!isLoading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 perspective-[2000px]">
             {filteredProducts.map((product, idx) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.05, type: "spring", stiffness: 100 }}
-                className="bg-white rounded-3xl border border-gray-100 group hover:border-primary/30 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] hover:-translate-y-3 transition-all duration-500 flex flex-col overflow-hidden relative"
+                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.05, type: "spring", stiffness: 100 }}
+                className="bg-white rounded-3xl border border-gray-100 group hover:border-primary/30 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col overflow-hidden relative transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
-                
+
                 <Link to={`/products/${product.slug}`} className="relative overflow-hidden bg-gray-50 h-64 block">
                   <img
                     src={product.product_images?.[0]?.image_url || '/placeholder.png'}
