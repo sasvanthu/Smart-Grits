@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import nodemailer from 'nodemailer';
 import { supabase } from '../config/supabase';
 
 const router = Router();
@@ -111,6 +112,48 @@ router.post('/', async (req, res) => {
       }]);
     } catch (dbError) {
       console.error('Failed to add quote inquiry to customers CRM:', dbError);
+    }
+
+    // Send Email Notification
+    try {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: `"${fullName}" <${email}>`,
+        to: process.env.ADMIN_EMAIL || 'info@smartgrit.in',
+        replyTo: email,
+        subject: `New Quote Request from ${fullName}`,
+        text: `
+You have received a new quote request from the SmartGrit Website.
+
+Name: ${fullName}
+Company: ${companyName || 'N/A'}
+Email: ${email}
+Phone: ${phone || 'N/A'}
+
+Remarks:
+${remarks || 'No remarks provided.'}
+
+Please check the Admin Dashboard Quotes section for product details.
+        `,
+      };
+
+      if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+        console.warn('SMTP_USER or SMTP_PASS is not configured in .env. Quote email was NOT sent, but simulating success.');
+      } else {
+        await transporter.sendMail(mailOptions);
+        console.log('Quote notification email sent successfully.');
+      }
+    } catch (emailError) {
+      console.error('Failed to send quote notification email:', emailError);
     }
 
     res.status(201).json({ success: true, quoteId });

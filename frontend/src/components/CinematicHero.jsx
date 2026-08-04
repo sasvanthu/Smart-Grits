@@ -379,9 +379,12 @@ export default function CinematicHero() {
           animate={{ scale: 1.02 }}
           transition={{ duration: 8, ease: 'easeOut' }}
         >
-          <img
-            src="/brochure-images/ai_ride_on_trowel_2.png"
-            alt="SmartGrit Industrial Polishing"
+          <video
+            src="/video_20260804_133006.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover object-center"
             style={{ opacity: 0.38 }}
           />

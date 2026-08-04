@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
     const mailOptions = {
       from: `"${firstName} ${lastName}" <${email}>`,
-      to: 'info@smartgrit.in',
+      to: process.env.ADMIN_EMAIL || 'info@smartgrit.in',
       replyTo: email,
       subject: `New Website Inquiry: ${subject}`,
       text: `
