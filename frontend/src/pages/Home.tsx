@@ -72,43 +72,7 @@ const Home = () => {
           <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden" style={{ perspective: '2000px' }}>
 
 
-            {/* Left: Premium 3D Animated Logo */}
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
-              className="absolute top-[25%] md:top-[45%] left-1/2 md:left-0 -translate-x-1/2 md:-translate-x-0 -translate-y-1/2 w-4/5 sm:w-2/3 md:w-[45vw] lg:w-[35vw] flex justify-center md:justify-start items-center perspective-1000 pointer-events-auto z-20 md:pl-8 lg:pl-12"
-              style={{
-                perspective: '1500px',
-              }}
-            >
-              <motion.div
-                animate={{
-                  y: [-8, 8, -8],
-                  rotateY: [-8, 8, -8],
-                  rotateX: [3, -3, 3]
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-full max-w-[240px] sm:max-w-[360px] lg:max-w-[440px] xl:max-w-[540px] aspect-square flex items-center justify-start"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* Glowing Green Orb Behind Logo */}
-                <div 
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] bg-primary/50 blur-[40px] rounded-full z-0"
-                />
 
-                {/* Main Logo with sharp drop shadow */}
-                <img
-                  src="/smart_grits_logo.png"
-                  alt="SmartGrit Logo"
-                  style={{
-                    filter: 'drop-shadow(0 30px 50px rgba(0,0,0,1)) drop-shadow(0 0 100px rgba(34,197,94,1))',
-                    transform: 'translateZ(50px)'
-                  }}
-                  className="w-full max-w-full h-auto object-contain relative z-10"
-                />
-              </motion.div>
-            </motion.div>
           </div>
 
           {/* Text Container aligned bottom right */}
