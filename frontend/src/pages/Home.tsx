@@ -57,7 +57,7 @@ const Home = () => {
         >
           <div className="absolute top-0 bottom-0 left-0 right-0 z-0">
             <video 
-              src="/video_20260804_134932.mp4" 
+              src="/video_20260804_142213.mp4" 
               autoPlay 
               loop 
               muted 

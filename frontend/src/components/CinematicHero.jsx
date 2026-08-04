@@ -380,7 +380,7 @@ export default function CinematicHero() {
           transition={{ duration: 8, ease: 'easeOut' }}
         >
           <video
-            src="/video_20260804_134932.mp4"
+            src="/video_20260804_142213.mp4"
             autoPlay
             loop
             muted
