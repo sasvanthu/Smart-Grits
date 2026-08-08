@@ -207,6 +207,10 @@ const TargetCursor = ({
       const allTargets = [];
       let current = directTarget;
       while (current && current !== document.body) {
+        // Skip if element or parent has no-cursor-lock class
+        if (current.classList.contains('no-cursor-lock')) {
+          return; // Abort locking entirely for this hover
+        }
         if (current.matches(targetSelector)) {
           allTargets.push(current);
         }

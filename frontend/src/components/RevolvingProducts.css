@@ -3,28 +3,31 @@
 .revolving-orbit {
   position: absolute;
   top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%) rotateY(-45deg);
-  transform-style: preserve-3d;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  /* Variables for the outer glowing curve */
+  --curve-padding: 340px;
   width: 0;
   height: 0;
 }
 
 @media (max-width: 768px) {
   .revolving-orbit {
-    left: -10%;
-    /* Adjust for mobile */
+    left: 5%;
     top: 50%;
+    --curve-padding: 220px;
   }
 }
 
 /* Each sticker item orbits in 3D */
 .orbit-item {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   transform-style: preserve-3d;
-  animation: orbit3d 40s linear infinite;
+  width: 0;
+  height: 0;
+  animation: orbit3d 15s linear infinite;
   animation-delay: var(--orbit-delay, 0s);
 }
 
@@ -57,15 +60,17 @@
   transition: all 0.4s ease;
 }
 
-.product-sticker:hover .sticker-image-wrapper img {
-  transform: scale(1.1);
-}
-
 .sticker-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
+}
+
+.product-sticker:hover .sticker-image-wrapper img {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 16px rgba(34, 197, 94, 1));
 }
 
 /* Product name label */
@@ -102,29 +107,87 @@
  * Back (furthest from viewer, behind video) = 0% and 100%
  */
 @keyframes orbit3d {
-  0%   { transform: rotateZ(360deg) translateX(var(--orbit-radius,400px)) rotateZ(-360deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
-  2%   { transform: rotateZ(352.8deg) translateX(var(--orbit-radius,400px)) rotateZ(-352.8deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
-  5%   { transform: rotateZ(342deg) translateX(var(--orbit-radius,400px)) rotateZ(-342deg) rotateY(45deg) scale(1.2); opacity: 0.9; z-index: 9; }
-  10%  { transform: rotateZ(324deg) translateX(var(--orbit-radius,400px)) rotateZ(-324deg) rotateY(45deg) scale(0.8); opacity: 0.8; z-index: 7; }
-  15%  { transform: rotateZ(306deg) translateX(var(--orbit-radius,400px)) rotateZ(-306deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  20%  { transform: rotateZ(288deg) translateX(var(--orbit-radius,400px)) rotateZ(-288deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  25%  { transform: rotateZ(270deg) translateX(var(--orbit-radius,400px)) rotateZ(-270deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  30%  { transform: rotateZ(252deg) translateX(var(--orbit-radius,400px)) rotateZ(-252deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  35%  { transform: rotateZ(234deg) translateX(var(--orbit-radius,400px)) rotateZ(-234deg) rotateY(45deg) scale(0.7); opacity: 0.6; z-index: 5; }
-  40%  { transform: rotateZ(216deg) translateX(var(--orbit-radius,400px)) rotateZ(-216deg) rotateY(45deg) scale(0.6); opacity: 0.5; z-index: 4; }
-  45%  { transform: rotateZ(198deg) translateX(var(--orbit-radius,400px)) rotateZ(-198deg) rotateY(45deg) scale(0.4); opacity: 0.3; z-index: 2; }
-  50%  { transform: rotateZ(180deg) translateX(var(--orbit-radius,400px)) rotateZ(-180deg) rotateY(45deg) scale(0.3); opacity: 0.15; z-index: 1; }
-  55%  { transform: rotateZ(162deg) translateX(var(--orbit-radius,400px)) rotateZ(-162deg) rotateY(45deg) scale(0.4); opacity: 0.3; z-index: 2; }
-  60%  { transform: rotateZ(144deg) translateX(var(--orbit-radius,400px)) rotateZ(-144deg) rotateY(45deg) scale(0.6); opacity: 0.5; z-index: 4; }
-  65%  { transform: rotateZ(126deg) translateX(var(--orbit-radius,400px)) rotateZ(-126deg) rotateY(45deg) scale(0.7); opacity: 0.6; z-index: 5; }
-  70%  { transform: rotateZ(108deg) translateX(var(--orbit-radius,400px)) rotateZ(-108deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  75%  { transform: rotateZ(90deg)  translateX(var(--orbit-radius,400px)) rotateZ(-90deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  80%  { transform: rotateZ(72deg)  translateX(var(--orbit-radius,400px)) rotateZ(-72deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  85%  { transform: rotateZ(54deg)  translateX(var(--orbit-radius,400px)) rotateZ(-54deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
-  90%  { transform: rotateZ(36deg)  translateX(var(--orbit-radius,400px)) rotateZ(-36deg)  rotateY(45deg) scale(0.8); opacity: 0.8; z-index: 7; }
-  95%  { transform: rotateZ(18deg)  translateX(var(--orbit-radius,400px)) rotateZ(-18deg)  rotateY(45deg) scale(1.2); opacity: 0.9; z-index: 9; }
-  98%  { transform: rotateZ(7.2deg) translateX(var(--orbit-radius,400px)) rotateZ(-7.2deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
-  100% { transform: rotateZ(0deg)   translateX(var(--orbit-radius,400px)) rotateZ(0deg)   rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
+
+  /* === ROLLING CIRCLE === */
+  /* Back half - invisible */
+  0% {
+    transform: rotateX(180deg) translateZ(var(--orbit-radius, 400px)) rotateX(-180deg) scale(0.35);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  /* Front-bottom rising up */
+  15% {
+    transform: rotateX(126deg) translateZ(var(--orbit-radius, 400px)) rotateX(-126deg) scale(0.45);
+    opacity: 0.35;
+    z-index: 3;
+  }
+
+  30% {
+    transform: rotateX(72deg) translateZ(var(--orbit-radius, 400px)) rotateX(-72deg) scale(0.55);
+    opacity: 0.5;
+    z-index: 5;
+  }
+
+  /* Approaching - stays small until very close */
+  42% {
+    transform: rotateX(32.4deg) translateZ(var(--orbit-radius, 400px)) rotateX(-32.4deg) scale(0.6);
+    opacity: 0.6;
+    z-index: 6;
+  }
+
+  /* === DOCK ZONE - rapid enlarge (only 3% window to avoid collision) === */
+  44% {
+    transform: rotateX(10deg) translateZ(var(--orbit-radius, 400px)) rotateX(-10deg) scale(1.3);
+    opacity: 0.9;
+    z-index: 9;
+  }
+
+  /* === DOCKED (10% = 1.5s) === */
+  45% {
+    transform: rotateX(0deg) translateZ(var(--orbit-radius, 400px)) rotateX(0deg) scale(1.6);
+    opacity: 1.0;
+    z-index: 10;
+  }
+
+  55% {
+    transform: rotateX(0deg) translateZ(var(--orbit-radius, 400px)) rotateX(0deg) scale(1.6);
+    opacity: 1.0;
+    z-index: 10;
+  }
+
+  /* === DOCK ZONE - rapid shrink back === */
+  56% {
+    transform: rotateX(-10deg) translateZ(var(--orbit-radius, 400px)) rotateX(10deg) scale(1.3);
+    opacity: 0.9;
+    z-index: 9;
+  }
+
+  /* Back to rolling circle size */
+  58% {
+    transform: rotateX(-32.4deg) translateZ(var(--orbit-radius, 400px)) rotateX(32.4deg) scale(0.6);
+    opacity: 0.6;
+    z-index: 6;
+  }
+
+  70% {
+    transform: rotateX(-72deg) translateZ(var(--orbit-radius, 400px)) rotateX(72deg) scale(0.55);
+    opacity: 0.5;
+    z-index: 5;
+  }
+
+  /* Going around back - fade out */
+  85% {
+    transform: rotateX(-126deg) translateZ(var(--orbit-radius, 400px)) rotateX(126deg) scale(0.45);
+    opacity: 0.35;
+    z-index: 3;
+  }
+
+  100% {
+    transform: rotateX(-180deg) translateZ(var(--orbit-radius, 400px)) rotateX(180deg) scale(0.35);
+    opacity: 0;
+    z-index: 1;
+  }
 }
 
 /* ── Responsive Sizes ──────────────────────────────────────────────────────── */
@@ -153,19 +216,19 @@
   }
 }
 
-/* ── Glow pulse behind orbit center ────────────────────────────────────────── */
-
+/* ── Orbit Glow ────────────────────────────────────────────────────────────── */
 .orbit-glow {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotateY(45deg);
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
-  animation: glow-pulse 4s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  width: calc(var(--orbit-radius) * 2.8);
+  height: calc(var(--orbit-radius) * 2.8);
+  /* Significantly reduced opacity for a subtler effect */
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 40%, transparent 70%);
+  filter: blur(40px);
   pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes glow-pulse {
@@ -199,11 +262,11 @@
 
 @keyframes ring-rotate {
   from {
-    transform: translate(-50%, -50%) rotateZ(0deg);
+    transform: translate(-50%, -50%) rotateY(90deg) rotateX(0deg);
   }
 
   to {
-    transform: translate(-50%, -50%) rotateZ(360deg);
+    transform: translate(-50%, -50%) rotateY(90deg) rotateX(360deg);
   }
 }
 
@@ -212,4 +275,59 @@
     width: 200px;
     height: 200px;
   }
+}
+
+/* ── Orbit Separator ───────────────────────────────────────────────────────────── */
+.orbit-separator {
+  position: absolute;
+  /* Mathematically place the top-left of the circle so its right edge touches x=0 */
+  top: calc(var(--orbit-radius) * -1);
+  left: calc(var(--orbit-radius) * -2);
+  width: calc(var(--orbit-radius) * 2);
+  height: calc(var(--orbit-radius) * 2);
+  border-radius: 50%;
+  pointer-events: none;
+  
+  /* Metallic curve separator line perfectly tracing the orbit path */
+  box-shadow: 
+    inset -1px 0 0 #ffffff,               /* Bright highlight edge */
+    inset -5px 0 0 #9ca3af,               /* Metallic grey body */
+    inset -12px 0 15px rgba(0,0,0,0.8),   /* Inner shadow for 3D depth */
+    4px 0 20px rgba(255,255,255,0.15);    /* Soft outer glow */
+    
+  /* Deep black inside the ring */
+  background: radial-gradient(circle at right center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.92) 50%, #000 75%);
+  
+  /* Sit behind the products so they orbit ON TOP of the line */
+  z-index: 10;
+}
+
+/* ── Brand Vertical Logo inside Ring ────────────────────────────────────────── */
+.orbit-brand-vertical {
+  position: absolute;
+  
+  /*
+   * Place it at the far left inside the ring.
+   * The ring circle center is at x = -orbitR.
+   * The ring's leftmost point is at x = -2*orbitR.
+   * We place the image center at the left ~15% inside the ring from the left edge.
+   */
+  left: calc(var(--orbit-radius) * -1.75);
+  top: 0;
+
+  /*
+   * The image is landscape (wide). Rotate it -90deg so it reads bottom-to-top.
+   * After rotation, its visual height becomes its width = 2*orbitR (full ring span).
+   * We center it on the anchor point.
+   */
+  width: calc(var(--orbit-radius) * 2);      /* will become the vertical height after rotate */
+  height: auto;
+
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0.88;
 }
