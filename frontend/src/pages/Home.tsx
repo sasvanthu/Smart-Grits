@@ -56,22 +56,25 @@ const Home = () => {
           className="relative h-[100dvh] pt-24 pb-12 min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden"
           style={{ perspective: '2000px' }}
         >
-          <div className="absolute top-0 bottom-0 left-0 right-0 z-0">
-            <video 
-              src="/video_20260804_142213.mp4" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/30 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/30 to-transparent md:block hidden"></div>
-          </div>
+          {/* 3D Intersecting Wrapper */}
+          <div className="absolute inset-0" style={{ transformStyle: 'preserve-3d' }}>
+            <div className="absolute top-0 bottom-0 left-0 right-0" style={{ transform: 'translateZ(0px)', transformStyle: 'preserve-3d' }}>
+              <video 
+                src="/video_20260804_142213.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="absolute inset-0 w-full h-full object-cover object-center opacity-100 brightness-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/10 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/10 to-transparent md:block hidden"></div>
+            </div>
 
-          {/* Left Container — Revolving Product Stickers */}
-          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden hidden lg:block" style={{ perspective: '2000px' }}>
-            <RevolvingProducts />
+            {/* Left Container — Revolving Product Stickers */}
+            <div className="absolute inset-0 pointer-events-none hidden lg:block" style={{ transformStyle: 'preserve-3d' }}>
+              <RevolvingProducts />
+            </div>
           </div>
 
           {/* Text Container aligned bottom right */}

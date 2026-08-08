@@ -3,10 +3,9 @@
 .revolving-orbit {
   position: absolute;
   top: 50%;
-  left: -5%;
-  /* Center slightly off-screen left */
-  transform: translateY(-50%);
-  /* Flattened to 2D plane to ensure perfectly equal visual gaps */
+  left: 25%;
+  transform: translate(-50%, -50%) rotateY(-45deg);
+  transform-style: preserve-3d;
   width: 0;
   height: 0;
 }
@@ -19,12 +18,13 @@
   }
 }
 
-/* Each sticker item orbits in 2D with fake scaling */
+/* Each sticker item orbits in 3D */
 .orbit-item {
   position: absolute;
   top: 0;
   left: 0;
-  animation: orbit2d 40s linear infinite;
+  transform-style: preserve-3d;
+  animation: orbit3d 40s linear infinite;
   animation-delay: var(--orbit-delay, 0s);
 }
 
@@ -95,33 +95,36 @@
   background: rgba(0, 0, 0, 0.55);
 }
 
-/* ── 3D Orbit Keyframe ─────────────────────────────────────────────────────── */
-
-@keyframes orbit2d {
-  0% {
-    transform: rotateZ(0deg) translateX(var(--orbit-radius, 400px)) rotateZ(0deg) scale(1.1);
-    z-index: 10;
-  }
-
-  25% {
-    transform: rotateZ(90deg) translateX(var(--orbit-radius, 400px)) rotateZ(-90deg) scale(0.85);
-    z-index: 5;
-  }
-
-  50% {
-    transform: rotateZ(180deg) translateX(var(--orbit-radius, 400px)) rotateZ(-180deg) scale(0.65);
-    z-index: 1;
-  }
-
-  75% {
-    transform: rotateZ(270deg) translateX(var(--orbit-radius, 400px)) rotateZ(-270deg) scale(0.85);
-    z-index: 5;
-  }
-
-  100% {
-    transform: rotateZ(360deg) translateX(var(--orbit-radius, 400px)) rotateZ(-360deg) scale(1.1);
-    z-index: 10;
-  }
+/* ── 3D Showcase Wheel Keyframe ────────────────────────────────────────────── */
+/*
+ * Normal size → approaches center → POP/ENLARGE → brief hold → SHRINK → normal size
+ * Front (closest to viewer, vertical center) = 50% mark (angle = 180°)
+ * Back (furthest from viewer, behind video) = 0% and 100%
+ */
+@keyframes orbit3d {
+  0%   { transform: rotateZ(360deg) translateX(var(--orbit-radius,400px)) rotateZ(-360deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
+  2%   { transform: rotateZ(352.8deg) translateX(var(--orbit-radius,400px)) rotateZ(-352.8deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
+  5%   { transform: rotateZ(342deg) translateX(var(--orbit-radius,400px)) rotateZ(-342deg) rotateY(45deg) scale(1.2); opacity: 0.9; z-index: 9; }
+  10%  { transform: rotateZ(324deg) translateX(var(--orbit-radius,400px)) rotateZ(-324deg) rotateY(45deg) scale(0.8); opacity: 0.8; z-index: 7; }
+  15%  { transform: rotateZ(306deg) translateX(var(--orbit-radius,400px)) rotateZ(-306deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  20%  { transform: rotateZ(288deg) translateX(var(--orbit-radius,400px)) rotateZ(-288deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  25%  { transform: rotateZ(270deg) translateX(var(--orbit-radius,400px)) rotateZ(-270deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  30%  { transform: rotateZ(252deg) translateX(var(--orbit-radius,400px)) rotateZ(-252deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  35%  { transform: rotateZ(234deg) translateX(var(--orbit-radius,400px)) rotateZ(-234deg) rotateY(45deg) scale(0.7); opacity: 0.6; z-index: 5; }
+  40%  { transform: rotateZ(216deg) translateX(var(--orbit-radius,400px)) rotateZ(-216deg) rotateY(45deg) scale(0.6); opacity: 0.5; z-index: 4; }
+  45%  { transform: rotateZ(198deg) translateX(var(--orbit-radius,400px)) rotateZ(-198deg) rotateY(45deg) scale(0.4); opacity: 0.3; z-index: 2; }
+  50%  { transform: rotateZ(180deg) translateX(var(--orbit-radius,400px)) rotateZ(-180deg) rotateY(45deg) scale(0.3); opacity: 0.15; z-index: 1; }
+  55%  { transform: rotateZ(162deg) translateX(var(--orbit-radius,400px)) rotateZ(-162deg) rotateY(45deg) scale(0.4); opacity: 0.3; z-index: 2; }
+  60%  { transform: rotateZ(144deg) translateX(var(--orbit-radius,400px)) rotateZ(-144deg) rotateY(45deg) scale(0.6); opacity: 0.5; z-index: 4; }
+  65%  { transform: rotateZ(126deg) translateX(var(--orbit-radius,400px)) rotateZ(-126deg) rotateY(45deg) scale(0.7); opacity: 0.6; z-index: 5; }
+  70%  { transform: rotateZ(108deg) translateX(var(--orbit-radius,400px)) rotateZ(-108deg) rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  75%  { transform: rotateZ(90deg)  translateX(var(--orbit-radius,400px)) rotateZ(-90deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  80%  { transform: rotateZ(72deg)  translateX(var(--orbit-radius,400px)) rotateZ(-72deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  85%  { transform: rotateZ(54deg)  translateX(var(--orbit-radius,400px)) rotateZ(-54deg)  rotateY(45deg) scale(0.8); opacity: 0.7; z-index: 6; }
+  90%  { transform: rotateZ(36deg)  translateX(var(--orbit-radius,400px)) rotateZ(-36deg)  rotateY(45deg) scale(0.8); opacity: 0.8; z-index: 7; }
+  95%  { transform: rotateZ(18deg)  translateX(var(--orbit-radius,400px)) rotateZ(-18deg)  rotateY(45deg) scale(1.2); opacity: 0.9; z-index: 9; }
+  98%  { transform: rotateZ(7.2deg) translateX(var(--orbit-radius,400px)) rotateZ(-7.2deg) rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
+  100% { transform: rotateZ(0deg)   translateX(var(--orbit-radius,400px)) rotateZ(0deg)   rotateY(45deg) scale(1.8); opacity: 1.0; z-index: 10; }
 }
 
 /* ── Responsive Sizes ──────────────────────────────────────────────────────── */
@@ -156,11 +159,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
+  transform: translate(-50%, -50%) rotateY(45deg);
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
   animation: glow-pulse 4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -170,16 +173,15 @@
   0%,
   100% {
     opacity: 0.4;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) rotateY(45deg) scale(0.9);
   }
 
   50% {
     opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) rotateY(45deg) scale(1.1);
   }
 }
 
-/* Orbit ring visual guide */
 .orbit-ring {
   position: absolute;
   top: 50%;
@@ -188,7 +190,7 @@
   pointer-events: none;
   width: calc(var(--orbit-radius, 400px) * 2);
   height: calc(var(--orbit-radius, 400px) * 2);
-  /* The ring is in the XY plane, so just center it */
+  /* The ring is in the XY plane, so just center it, it will inherit the container's rotateX */
   transform: translate(-50%, -50%);
   border: 1px dashed rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 40px rgba(34, 197, 94, 0.05);
