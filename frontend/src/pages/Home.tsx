@@ -4,6 +4,7 @@ import { ArrowRight, ChevronRight, ShieldCheck, Factory, Award, CheckCircle } fr
 import { CATEGORIES, CLIENTS, POLISHED_CONCRETE } from '../data/brochureData';
 import { useState, useEffect } from 'react';
 import ScrollStackSection from '../components/ScrollStackSection';
+import RevolvingProducts from '../components/RevolvingProducts';
 
 interface DbProduct {
   id: string;
@@ -68,11 +69,9 @@ const Home = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/30 to-transparent md:block hidden"></div>
           </div>
 
-          {/* Left Container */}
-          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden" style={{ perspective: '2000px' }}>
-
-
-
+          {/* Left Container — Revolving Product Stickers */}
+          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden hidden lg:block" style={{ perspective: '2000px' }}>
+            <RevolvingProducts />
           </div>
 
           {/* Text Container aligned bottom right */}

@@ -1,0 +1,213 @@
+/* ── Revolving Product Stickers ─────────────────────────────────────────────── */
+
+.revolving-orbit {
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  /* Center slightly off-screen left */
+  transform: translateY(-50%);
+  /* Flattened to 2D plane to ensure perfectly equal visual gaps */
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 768px) {
+  .revolving-orbit {
+    left: -10%;
+    /* Adjust for mobile */
+    top: 50%;
+  }
+}
+
+/* Each sticker item orbits in 2D with fake scaling */
+.orbit-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: orbit2d 40s linear infinite;
+  animation-delay: var(--orbit-delay, 0s);
+}
+
+
+
+/* The sticker card */
+.product-sticker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: filter 0.4s ease;
+  /* Removed outer drop shadow so it wraps the image pixels directly */
+}
+
+.product-sticker:hover {
+  /* Keep any text changes but remove outer shadow as it's moved to the image */
+}
+
+/* Product image – no background, just the product shape */
+.sticker-image-wrapper {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.product-sticker:hover .sticker-image-wrapper img {
+  transform: scale(1.1);
+}
+
+.sticker-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Product name label */
+.sticker-label {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  max-width: 130px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.product-sticker:hover .sticker-label {
+  color: #22c55e;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* ── 3D Orbit Keyframe ─────────────────────────────────────────────────────── */
+
+@keyframes orbit2d {
+  0% {
+    transform: rotateZ(0deg) translateX(var(--orbit-radius, 400px)) rotateZ(0deg) scale(1.1);
+    z-index: 10;
+  }
+
+  25% {
+    transform: rotateZ(90deg) translateX(var(--orbit-radius, 400px)) rotateZ(-90deg) scale(0.85);
+    z-index: 5;
+  }
+
+  50% {
+    transform: rotateZ(180deg) translateX(var(--orbit-radius, 400px)) rotateZ(-180deg) scale(0.65);
+    z-index: 1;
+  }
+
+  75% {
+    transform: rotateZ(270deg) translateX(var(--orbit-radius, 400px)) rotateZ(-270deg) scale(0.85);
+    z-index: 5;
+  }
+
+  100% {
+    transform: rotateZ(360deg) translateX(var(--orbit-radius, 400px)) rotateZ(-360deg) scale(1.1);
+    z-index: 10;
+  }
+}
+
+/* ── Responsive Sizes ──────────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  .sticker-image-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .sticker-label {
+    font-size: 15px;
+    max-width: 190px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sticker-image-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .sticker-label {
+    font-size: 16px;
+    max-width: 230px;
+  }
+}
+
+/* ── Glow pulse behind orbit center ────────────────────────────────────────── */
+
+.orbit-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+  animation: glow-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Orbit ring visual guide */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  width: calc(var(--orbit-radius, 400px) * 2);
+  height: calc(var(--orbit-radius, 400px) * 2);
+  /* The ring is in the XY plane, so just center it */
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.05);
+  animation: ring-rotate 60s linear infinite;
+}
+
+@keyframes ring-rotate {
+  from {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .orbit-glow {
+    width: 200px;
+    height: 200px;
+  }
+}
