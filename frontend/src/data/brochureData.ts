@@ -410,6 +410,225 @@ Depending on your floor goals, requirements, and your Industry, SmartGrit will r
       'Application': 'Final polishing and burnishing of hard floors',
     },
   },
+  {
+    id: 'ac-9',
+    name: 'Densifier Chemical Applicator',
+    slug: 'densifier-chemical-applicator',
+    category: 'Machines & Accessories',
+    categorySlug: 'accessories',
+    description: `The Densifier Chemical Applicator is a precision tool designed for the uniform and efficient application of concrete densifiers, hardeners, and sealers across industrial floor surfaces. Engineered for professional concrete polishing workflows, it ensures even chemical distribution with minimal waste and maximum penetration.
+
+The applicator's ergonomic design reduces operator fatigue during large-area applications, while its controlled flow mechanism prevents pooling and over-saturation, which are common causes of uneven curing and surface residue.`,
+    image: '/brochure-images/ai_chemical_applicator.png',
+    gallery: ['/brochure-images/ai_chemical_applicator.png'],
+    features: [
+      'Precision flow control for uniform chemical distribution',
+      'Ergonomic design reduces operator fatigue',
+      'Compatible with lithium densifiers, sodium silicate, and sealers',
+      'Prevents pooling and over-saturation',
+      'Durable construction for heavy industrial use',
+      'Suitable for large-area industrial floor applications',
+    ],
+    specifications: {
+      'Type': 'Chemical Applicator / Spreader',
+      'Application': 'Densifiers, Hardeners, Sealers',
+      'Operation': 'Manual / Walk-Behind',
+      'Substrate': 'Concrete Floors',
+    },
+  },
+  {
+    id: 'ac-10',
+    name: 'Slurry Wiper SG-36',
+    slug: 'slurry-wiper-sg36',
+    category: 'Machines & Accessories',
+    categorySlug: 'accessories',
+    description: `The SmartGrit Slurry Wiper SG-36 is a heavy-duty floor cleaning tool specifically engineered for the removal of concrete slurry generated during wet grinding and polishing operations. Its wide 36-inch blade ensures rapid clearance of large floor areas, significantly reducing cleaning time between polishing steps.
+
+The SG-36 features a sharp, industrial-grade rubber blade that creates a firm vacuum seal against the floor surface, effectively channeling slurry into a manageable stream for collection. The robust frame and ergonomic handle provide maximum control and durability across intensive daily use in industrial environments.`,
+    image: '/brochure-images/ai_slurry_squeegee.png',
+    gallery: ['/brochure-images/ai_slurry_squeegee.png'],
+    features: [
+      '36-inch wide blade for fast, large-area slurry removal',
+      'Industrial-grade rubber blade creates firm floor seal',
+      'Robust frame for intensive daily industrial use',
+      'Ergonomic handle for maximum operator control',
+      'Essential for wet grinding and polishing operations',
+      'Channels slurry efficiently for easy vacuum collection',
+    ],
+    specifications: {
+      'Model': 'SG-36',
+      'Blade Width': '36 inches',
+      'Blade Type': 'Industrial-Grade Rubber',
+      'Operation': 'Manual / Walk-Behind',
+      'Application': 'Concrete slurry removal during wet polishing',
+    },
+  },
+  {
+    id: 'ac-11',
+    name: 'SmartGrit Toolbox',
+    slug: 'toolbox',
+    category: 'Machines & Accessories',
+    categorySlug: 'accessories',
+    description: `The SmartGrit Toolbox is a comprehensive, job-site-ready storage and carrying solution designed for concrete polishing professionals. It organizes and protects the essential hand tools, accessories, and small components required across every stage of a concrete polishing project — from surface preparation through final finishing.
+
+Built with heavy-duty materials to withstand the demanding conditions of industrial job sites, the SmartGrit Toolbox keeps your team's critical tools secure, organized, and immediately accessible. Its structured internal layout accommodates diamond tools, applicator accessories, measuring instruments, and maintenance components.`,
+    image: '/brochure-images/ai_toolbox.png',
+    gallery: ['/brochure-images/ai_toolbox.png'],
+    features: [
+      'Heavy-duty construction for industrial job-site durability',
+      'Structured internal layout for organized tool storage',
+      'Accommodates diamond tools, applicators and accessories',
+      'Secure locking mechanism protects valuable components',
+      'Ergonomic carry handle for easy transport between job areas',
+      'Keeps all essential polishing accessories immediately accessible',
+    ],
+    specifications: {
+      'Type': 'Professional Tool Storage',
+      'Build': 'Heavy-Duty Industrial Grade',
+      'Application': 'Concrete polishing job-site accessory management',
+    },
+  },
+  {
+    id: 'ac-12',
+    name: 'Microfiber Dry Mop',
+    slug: 'microfiber-dry-mop',
+    category: 'Machines & Accessories',
+    categorySlug: 'accessories',
+    description: `The SmartGrit Microfiber Dry Mop is an essential finishing and maintenance tool for polished concrete floors. Designed for dry application, it efficiently collects fine dust, loose particles, and surface debris without the need for water or chemical agents — making it perfect for both pre-polishing preparation and post-polishing maintenance.
+
+The microfiber pad technology generates a static charge that actively attracts and traps fine particles, preventing them from being redistributed across the floor surface. With a surface area several times greater than conventional cotton mops, it covers large industrial floor areas in fewer passes, improving productivity and floor cleanliness.`,
+    image: '/brochure-images/ai_microfiber_dry_mop.png',
+    gallery: ['/brochure-images/ai_microfiber_dry_mop.png'],
+    features: [
+      'Microfiber technology generates static charge to trap fine dust',
+      'Dry application — no water or chemicals required',
+      'Large surface area for fast coverage of industrial floor areas',
+      'Prevents dust redistribution across polished surfaces',
+      'Ideal for pre-polishing prep and post-polishing maintenance',
+      'Machine washable pad for long service life',
+    ],
+    specifications: {
+      'Type': 'Microfiber Dry Mop',
+      'Application': 'Dry dust collection on polished concrete',
+      'Pad Material': 'High-density microfiber',
+      'Operation': 'Manual / Walk-Behind',
+    },
+  },
+  {
+    id: 'ch-3',
+    name: 'Lithium Densifier & Hardener',
+    slug: 'lithium-densifier-hardener',
+    category: 'Chemicals & Densifiers',
+    categorySlug: 'chemicals',
+    description: `Lithium Silicate Densifier & Hardener is a premium, penetrating chemical treatment engineered to permanently increase the density, hardness, and abrasion resistance of concrete floors. When applied to the concrete surface, the lithium silicate solution penetrates deep into the substrate and reacts chemically with free lime (calcium hydroxide) to form Calcium Silicate Hydrate (C-S-H) — the same compound that gives concrete its structural strength.
+
+Unlike sodium silicate-based products, lithium silicate formulations produce a significantly smaller molecular structure that penetrates deeper into the concrete, delivers faster chemical reactivity, and leaves minimal surface residue. The result is a permanently hardened, dust-free, and highly polishable concrete surface.`,
+    image: '/brochure-images/ai_lithium_densifier.png',
+    gallery: ['/brochure-images/ai_lithium_densifier.png'],
+    features: [
+      'Deep penetration: smaller molecular structure than sodium silicate',
+      'Chemically reacts with free lime to form C-S-H — permanent hardening',
+      'Eliminates concrete dusting and surface chalking',
+      'Increases abrasion and impact resistance for heavy traffic',
+      'Improves polishability — produces higher gloss and better shine retention',
+      'Minimal surface residue compared to sodium silicate products',
+      'Low maintenance — reduces wear and extends floor service life',
+    ],
+    specifications: {
+      'Type': 'Lithium Silicate Densifier & Hardener',
+      'Form': 'Water-based clear liquid',
+      'Application Method': 'Low-pressure sprayer, microfiber pad or soft broom',
+      'Reaction': 'Ca(OH)₂ + SiO₂ → C-S-H (Calcium Silicate Hydrate)',
+      'Substrate': 'Concrete (min. 28 days old)',
+      'Wet Time': '15–20 minutes',
+    },
+  },
+  {
+    id: 'ch-4',
+    name: 'Sodium Silicate Densifier & Hardener',
+    slug: 'sodium-silicate-densifier',
+    category: 'Chemicals & Densifiers',
+    categorySlug: 'chemicals',
+    description: `Sodium Silicate Densifier & Hardener, commonly known as water glass, is a proven, cost-effective chemical hardener used to improve the strength, durability, and dust resistance of concrete floors. It penetrates the concrete surface and reacts with free calcium hydroxide (lime) to form Calcium Silicate Hydrate (C-S-H) — the primary compound responsible for concrete's compressive strength.
+
+The newly formed C-S-H crystals fill microscopic pores and capillary channels within the concrete matrix, creating a permanently denser, harder surface. Since the reaction occurs inside the concrete, the treatment becomes an integral part of the slab and will not peel, chip, or flake like surface coatings.`,
+    image: '/brochure-images/ai_sodium_silicate.png',
+    gallery: ['/brochure-images/ai_sodium_silicate.png'],
+    features: [
+      'Reacts with calcium hydroxide to form permanent C-S-H crystals',
+      'Fills microscopic pores — creates a denser, harder surface',
+      'Eliminates concrete dusting and surface chalking',
+      'Increases abrasion resistance for heavy pedestrian and forklift traffic',
+      'Reduces water absorption and improves oil/chemical resistance',
+      'Permanent treatment — will not peel, chip or flake',
+      'Cost-effective base treatment for polished concrete projects',
+    ],
+    specifications: {
+      'Type': 'Sodium Silicate Densifier & Hardener',
+      'Common Name': 'Water Glass',
+      'Form': 'Liquid concentrate (dilute 1:3 or 1:4 with clean water)',
+      'Application Method': 'Low-pressure sprayer, roller, or soft broom',
+      'Substrate': 'Clean, dry concrete',
+      'Residue Removal': 'Scrub and rinse before residue dries',
+    },
+  },
+  {
+    id: 'ch-5',
+    name: 'Concrete Sealer',
+    slug: 'concrete-sealer-pro',
+    category: 'Chemicals & Densifiers',
+    categorySlug: 'chemicals',
+    description: `SmartGrit Concrete Sealer is a high-performance protective treatment designed to safeguard concrete surfaces from moisture, water penetration, oils, chemicals, salts, and other contaminants. By sealing the surface pores or penetrating deep into the concrete structure, it significantly improves durability, reduces maintenance requirements, and extends the service life of concrete floors.
+
+Concrete sealers help prevent cracking, dusting, staining, efflorescence, spalling, freeze-thaw damage, and chemical deterioration, while maintaining the appearance and structural integrity of the concrete.
+
+SmartGrit offers two main sealer types — Penetrating Sealers (silane, siloxane, lithium silicate) that protect from within without forming a film, and Film-Forming Sealers (acrylic, polyurethane, epoxy) that create a surface coating for superior stain and chemical resistance with an enhanced gloss finish.`,
+    image: '/brochure-images/ai_concrete_sealer.png',
+    gallery: ['/brochure-images/ai_concrete_sealer.png'],
+    features: [
+      'Guards against moisture, oils, chemicals, and salts',
+      'Prevents staining, efflorescence, spalling and freeze-thaw damage',
+      'Penetrating type: breathable protection without surface film',
+      'Film-forming type: enhanced gloss and stain resistance',
+      'Available in water-based (low VOC) and solvent-based formulations',
+      'Extends service life of polished concrete floors',
+      'Easy to apply with sprayer, roller, or microfiber mop',
+    ],
+    specifications: {
+      'Types Available': 'Penetrating (Silane/Siloxane) or Film-Forming (Acrylic/Polyurethane/Epoxy)',
+      'Formulations': 'Water-based (low VOC) or Solvent-based',
+      'Application Method': 'Low-pressure sprayer, roller, or microfiber mop',
+      'Substrate': 'Polished or prepared concrete',
+      'Finish': 'Satin to High-Gloss (depending on type)',
+    },
+  },
+  {
+    id: 'ch-6',
+    name: 'Concrete Floor Cleaning Chemical',
+    slug: 'floor-cleaning-chemical',
+    category: 'Chemicals & Densifiers',
+    categorySlug: 'chemicals',
+    description: `SmartGrit Concrete Floor Cleaning Chemicals are a professionally formulated range of cleaning agents designed to address the specific types of contamination encountered on industrial and commercial concrete floors. Choosing the correct chemical for the specific type of dirt or stain is essential — routine cleaning requires alkaline or pH-neutral cleaners, grease requires degreasers, and rust or cement smears require mild acid cleaners.
+
+The SmartGrit range covers all common cleaning requirements for concrete floor maintenance, from daily mopping through to heavy-duty industrial degreasing and stain removal. All formulations are engineered to be safe on sealed and polished concrete surfaces.`,
+    image: '/brochure-images/ai_floor_cleaner.png',
+    gallery: ['/brochure-images/ai_floor_cleaner.png'],
+    features: [
+      'pH-neutral cleaners safe for daily or weekly mopping on sealed surfaces',
+      'Mild alkaline detergents for heavy-traffic unsealed concrete',
+      'Alkaline degreasers for oil, petroleum and grease removal',
+      'Oxalic/phosphoric acid cleaners for rust stains and efflorescence',
+      'Citrus-based bio solvents for adhesive residue and light sealer stripping',
+      'Complete range covers all common industrial floor cleaning needs',
+      'Safe for use on polished and sealed concrete surfaces',
+    ],
+    specifications: {
+      'Range': 'pH-Neutral, Alkaline, Acidic, and Bio-Based Solvents',
+      'Application': 'Daily maintenance through heavy-duty stain removal',
+      'Substrate': 'Sealed and unsealed concrete floors',
+      'Dilution': 'As per product-specific manufacturer recommendations',
+    },
+  },
 ];
 
 // ─── CLIENTS ─────────────────────────────────────────────────────────────────

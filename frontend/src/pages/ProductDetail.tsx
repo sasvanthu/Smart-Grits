@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, ArrowLeft, CheckCircle, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { PRODUCTS as STATIC_PRODUCTS } from '../data/brochureData';
 
 interface DbProduct {
   id: string;
@@ -9,6 +10,7 @@ interface DbProduct {
   slug: string;
   description: string;
   features: string[];
+  specifications?: Record<string, string>;
   categories: { name: string } | null;
   product_images?: { image_url: string; is_primary: boolean }[];
 }
@@ -29,11 +31,47 @@ const ProductDetail = () => {
           const data = await response.json();
           setProduct(data);
         } else {
-          setProduct(null);
+          // Fall back to static product data
+          const staticProduct = STATIC_PRODUCTS.find(p => p.slug === slug);
+          if (staticProduct) {
+            setProduct({
+              id: staticProduct.id,
+              name: staticProduct.name,
+              slug: staticProduct.slug,
+              description: staticProduct.description,
+              features: staticProduct.features || [],
+              specifications: staticProduct.specifications,
+              categories: { name: staticProduct.category },
+              product_images: [
+                { image_url: staticProduct.image, is_primary: true },
+                ...(staticProduct.gallery?.slice(1).map(url => ({ image_url: url, is_primary: false })) || []),
+              ],
+            });
+          } else {
+            setProduct(null);
+          }
         }
       } catch (error) {
         console.error('Error fetching product:', error);
-        setProduct(null);
+        // Also try static fallback on network errors
+        const staticProduct = STATIC_PRODUCTS.find(p => p.slug === slug);
+        if (staticProduct) {
+          setProduct({
+            id: staticProduct.id,
+            name: staticProduct.name,
+            slug: staticProduct.slug,
+            description: staticProduct.description,
+            features: staticProduct.features || [],
+            specifications: staticProduct.specifications,
+            categories: { name: staticProduct.category },
+            product_images: [
+              { image_url: staticProduct.image, is_primary: true },
+              ...(staticProduct.gallery?.slice(1).map(url => ({ image_url: url, is_primary: false })) || []),
+            ],
+          });
+        } else {
+          setProduct(null);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -135,6 +173,21 @@ const ProductDetail = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Specifications */}
+            {product.specifications && Object.keys(product.specifications).length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-dark mb-3">Specifications</h3>
+                <div className="rounded-2xl border border-gray-100 overflow-hidden">
+                  {Object.entries(product.specifications).map(([key, val], i) => (
+                    <div key={i} className={`flex gap-4 px-4 py-3 text-sm ${i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+                      <span className="font-semibold text-dark w-40 shrink-0">{key}</span>
+                      <span className="text-gray-600">{val}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

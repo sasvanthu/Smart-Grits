@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, ChevronRight } from 'lucide-react';
+import { PRODUCTS as STATIC_PRODUCTS, CATEGORIES as STATIC_CATEGORIES } from '../data/brochureData';
 
 interface DbProduct {
   id: string;
@@ -11,6 +12,16 @@ interface DbProduct {
   categories: { name: string } | null;
   product_images?: { image_url: string }[];
 }
+
+// Convert static products to the same shape as DB products
+const staticAsDbProducts: DbProduct[] = STATIC_PRODUCTS.map(p => ({
+  id: p.id,
+  name: p.name,
+  slug: p.slug,
+  description: p.description,
+  categories: { name: p.category },
+  product_images: [{ image_url: p.image }],
+}));
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,42 +35,39 @@ const Products = () => {
     }
   }, [searchParams]);
 
-  const [products, setProducts] = useState<DbProduct[]>([]);
+  const [apiProducts, setApiProducts] = useState<DbProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
-
   useEffect(() => {
-    const fetchProductsAndCategories = async () => {
+    const fetchProducts = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        const [productsRes, categoriesRes] = await Promise.all([
-          fetch(`${apiUrl}/api/products`),
-          fetch(`${apiUrl}/api/categories`)
-        ]);
-
-        if (productsRes.ok) {
-          const pData = await productsRes.json();
-          setProducts(pData);
-        }
-        if (categoriesRes.ok) {
-          const cData = await categoriesRes.json();
-          setCategories(cData);
+        const res = await fetch(`${apiUrl}/api/products`);
+        if (res.ok) {
+          const data = await res.json();
+          setApiProducts(data);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching products from API:', error);
       } finally {
         setIsLoading(false);
       }
     };
-    fetchProductsAndCategories();
+    fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((p) => {
-    const activeCatObj = categories.find(c => c.slug === activeCategory);
-    const activeCatName = activeCatObj ? activeCatObj.name : null;
+  // Merge: API products take priority; static products fill in any not in the API
+  const apiSlugs = new Set(apiProducts.map(p => p.slug));
+  const mergedProducts = [
+    ...apiProducts,
+    ...staticAsDbProducts.filter(p => !apiSlugs.has(p.slug)),
+  ];
 
-    const matchesCategory = activeCategory === 'all' || p.categories?.name === activeCatName;
+  // Build a unified category list from static categories
+  const allCategories = STATIC_CATEGORIES.map(c => ({ id: c.slug, name: c.name, slug: c.slug }));
+
+  const filteredProducts = mergedProducts.filter((p) => {
+    const matchesCategory = activeCategory === 'all' || p.categories?.name === allCategories.find(c => c.slug === activeCategory)?.name;
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
@@ -112,7 +120,7 @@ const Products = () => {
             >
               All
             </button>
-            {categories.map((cat) => (
+            {allCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => {
