@@ -287,47 +287,52 @@
   height: calc(var(--orbit-radius) * 2);
   border-radius: 50%;
   pointer-events: none;
-  
+
   /* Metallic curve separator line perfectly tracing the orbit path */
-  box-shadow: 
-    inset -1px 0 0 #ffffff,               /* Bright highlight edge */
-    inset -5px 0 0 #9ca3af,               /* Metallic grey body */
-    inset -12px 0 15px rgba(0,0,0,0.8),   /* Inner shadow for 3D depth */
-    4px 0 20px rgba(255,255,255,0.15);    /* Soft outer glow */
-    
+  box-shadow:
+    inset -1px 0 0 #ffffff,
+    /* Bright highlight edge */
+    inset -5px 0 0 #9ca3af,
+    /* Metallic grey body */
+    inset -12px 0 15px rgba(0, 0, 0, 0.8),
+    /* Inner shadow for 3D depth */
+    4px 0 20px rgba(255, 255, 255, 0.15);
+  /* Soft outer glow */
+
   /* Deep black inside the ring */
-  background: radial-gradient(circle at right center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.92) 50%, #000 75%);
-  
+  background: radial-gradient(circle at right center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.92) 50%, #000 75%);
+
   /* Sit behind the products so they orbit ON TOP of the line */
   z-index: 10;
 }
 
-/* ── Brand Vertical Logo inside Ring ────────────────────────────────────────── */
-.orbit-brand-vertical {
+/* ── Brand Inside Ring ──────────────────────────────────────────────────────── */
+.orbit-brand-inner {
   position: absolute;
-  
-  /*
-   * Place it at the far left inside the ring.
-   * The ring circle center is at x = -orbitR.
-   * The ring's leftmost point is at x = -2*orbitR.
-   * We place the image center at the left ~15% inside the ring from the left edge.
+  /* 
+   * Place it left of the products (which are at x=0). 
    */
-  left: calc(var(--orbit-radius) * -1.75);
+  left: calc(var(--orbit-radius) * -0.32);
   top: 0;
+  transform: translate(-50%, -50%);
 
-  /*
-   * The image is landscape (wide). Rotate it -90deg so it reads bottom-to-top.
-   * After rotation, its visual height becomes its width = 2*orbitR (full ring span).
-   * We center it on the anchor point.
-   */
-  width: calc(var(--orbit-radius) * 2);      /* will become the vertical height after rotate */
-  height: auto;
+  /* Stack: name bottom-to-top, logo above */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 12px;
 
-  transform: translate(-50%, -50%) rotate(-90deg);
-  transform-origin: center center;
-
-  object-fit: contain;
   pointer-events: none;
-  z-index: 12;
-  opacity: 0.88;
+  z-index: 15;
+}
+
+.orbit-brand-logo {
+  /* Sized to fit the full screen height perfectly after rotation */
+  width: 100vh;
+  height: auto;
+  object-fit: contain;
+  /* Rotate 90 degrees left and scale up. 
+     A scale of ~2.4 - 2.5 here perfectly matches the visual size of the 2.8 scale 
+     we used before the padding was cropped out! */
+  transform: rotate(-90deg) scale(2.5);
 }

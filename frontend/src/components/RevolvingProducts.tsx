@@ -139,13 +139,10 @@ const RevolvingProducts = () => {
       {/* Metallic separator and dark void that acts as the orbit curve */}
       <div className="orbit-separator" />
 
-      {/* Company logo displayed vertically inside the ring — spans full ring height */}
-      <img
-        src="/smartgritslogo_white_text.png?v=1"
-        alt="Smart Grits"
-        className="orbit-brand-vertical"
-        draggable={false}
-      />
+      {/* Company logo inside the ring */}
+      <div className="orbit-brand-inner">
+        <img src="/smart_grits_logo_white_transparent.png" alt="Smart Grits Logo" className="orbit-brand-logo" />
+      </div>
 
       {/* Products — positioned via inline JS-computed styles */}
       {products.map((product, i) => {
