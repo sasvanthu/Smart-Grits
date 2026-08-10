@@ -44,15 +44,15 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6 uppercase tracking-wider">Newsletter</h4>
             <p className="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and products.</p>
-            <form className="flex">
+            <form className="flex flex-col sm:flex-row gap-2 sm:gap-0">
               <input 
                 type="email" 
                 placeholder="Email Address" 
-                className="w-full px-4 py-2 bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-primary"
+                className="w-full px-4 py-3 sm:py-2 bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-primary rounded-lg sm:rounded-none sm:rounded-l-lg"
               />
               <button 
                 type="submit"
-                className="px-4 py-2 bg-primary text-white font-semibold hover:bg-green-600 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 sm:py-2 bg-primary text-white font-semibold hover:bg-green-600 transition-colors rounded-lg sm:rounded-none sm:rounded-r-lg whitespace-nowrap"
               >
                 Go
               </button>

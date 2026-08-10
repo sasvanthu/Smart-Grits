@@ -110,13 +110,13 @@ const Products = () => {
           </div>
 
           {/* Category tabs */}
-          <div className="flex flex-wrap gap-3 items-center bg-white p-2 rounded-2xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] border-2 border-gray-100">
+          <div className="flex gap-3 items-center bg-white p-2 rounded-2xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] border-2 border-gray-100 overflow-x-auto no-scrollbar scroll-smooth">
             <button
               onClick={() => {
                 setActiveCategory('all');
                 setSearchParams({});
               }}
-              className={`px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
+              className={`whitespace-nowrap flex-shrink-0 px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
             >
               All
             </button>
@@ -127,7 +127,7 @@ const Products = () => {
                   setActiveCategory(cat.slug);
                   setSearchParams({ category: cat.slug });
                 }}
-                className={`px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.slug ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
+                className={`whitespace-nowrap flex-shrink-0 px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.slug ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
               >
                 {cat.name}
               </button>

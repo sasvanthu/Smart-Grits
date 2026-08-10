@@ -90,14 +90,6 @@ const Home = () => {
               transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
               className="absolute bottom-12 md:bottom-20 left-1/2 md:left-auto right-auto md:right-6 lg:right-12 xl:right-16 -translate-x-1/2 md:translate-x-0 flex flex-col items-center md:items-end text-center md:text-right pointer-events-auto w-full px-4 md:px-0"
             >
-              {/* HUD Decoration */}
-              <div className="flex items-center gap-3 mb-6 opacity-80">
-                <div className="h-[2px] w-16 bg-gradient-to-r from-transparent to-primary"></div>
-                <span className="font-mono text-xs tracking-[0.4em] text-green-300 uppercase filter drop-shadow-[0_0_5px_rgba(34,197,94,1)]">
-                  [ INIT_SYS_READY ]
-                </span>
-              </div>
-
               {/* Permanent Static 3D Text Container */}
               <div className="relative group">
                 {/* Floating Ambient Glow */}
@@ -417,7 +409,7 @@ const Home = () => {
                 <div className="w-24 h-1 bg-primary mx-auto"></div>
               </div>
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
                 {CLIENTS.map((client, idx) => (
                   <a
                     key={idx}

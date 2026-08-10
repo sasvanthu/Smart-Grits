@@ -203,36 +203,10 @@ const Navbar = () => {
                             {link.subLinks.map(sub => (
                               <div key={sub.label} className="space-y-1">
                                 <div className="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors uppercase tracking-wider">
-                                  <Link to={sub.to} onClick={() => setIsOpen(false)} className="flex-1">
+                                  <Link to={sub.to} onClick={() => setIsOpen(false)} className="flex-1 block w-full">
                                     {sub.label}
                                   </Link>
-                                  {sub.subItems && (
-                                    <button 
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        setActiveSubDropdown(activeSubDropdown === sub.label ? null : sub.label);
-                                      }}
-                                      className="p-1"
-                                    >
-                                      <ChevronDown className={`w-4 h-4 transition-transform ${activeSubDropdown === sub.label ? 'rotate-180' : ''}`} />
-                                    </button>
-                                  )}
                                 </div>
-                                
-                                {sub.subItems && activeSubDropdown === sub.label && (
-                                  <div className="pl-4 pr-2 py-1 space-y-1 bg-white rounded-lg mt-1 shadow-inner">
-                                    {sub.subItems.map(item => (
-                                      <Link
-                                        key={item.label}
-                                        to={item.to}
-                                        onClick={() => setIsOpen(false)}
-                                        className="block px-4 py-2 text-xs font-semibold text-gray-500 hover:text-primary hover:bg-primary/5 rounded-md transition-colors uppercase tracking-wider"
-                                      >
-                                        {item.label}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                )}
                               </div>
                             ))}
                           </div>
