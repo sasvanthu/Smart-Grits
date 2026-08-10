@@ -35,13 +35,13 @@ const Home = () => {
   }, []);
   const { scrollYProgress } = useScroll();
   const beamHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  
+
   return (
     <div className="w-full relative overflow-x-hidden">
       {/* Fixed Energy Beam */}
       <div className="fixed top-0 bottom-0 left-2 md:left-8 w-px z-40 pointer-events-none opacity-50 md:opacity-100">
         <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-primary/10 to-transparent"></div>
-        <motion.div 
+        <motion.div
           style={{ height: beamHeight }}
           className="absolute top-0 w-full bg-gradient-to-b from-transparent via-primary to-green-400 origin-top shadow-[0_0_20px_2px_rgba(34,197,94,0.6)]"
         ></motion.div>
@@ -59,18 +59,18 @@ const Home = () => {
           {/* 3D Intersecting Wrapper */}
           <div className="absolute inset-0" style={{ transformStyle: 'preserve-3d' }}>
             <div className="absolute top-0 bottom-0 left-0 right-0" style={{ transform: 'translateZ(0px)', transformStyle: 'preserve-3d' }}>
-              <video 
-                src="/video_20260804_142213.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
+              <video
+                src="/video_20260804_142213.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="absolute inset-0 w-full h-full object-cover object-center opacity-100 brightness-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/10 to-transparent"></div>
               {/* Dark left-side gradient — stops exactly at the metallic separator ring (~20% left) */}
-              <div 
-                className="absolute inset-0 hidden md:block" 
+              <div
+                className="absolute inset-0 hidden md:block"
                 style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.1) 22%, transparent 28%)' }}
               ></div>
             </div>
