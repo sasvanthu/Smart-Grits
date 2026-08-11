@@ -96,27 +96,27 @@ const Products = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {/* Filters */}
-        <div className="flex flex-col gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mb-12 items-center">
           {/* Search */}
-          <div className="relative flex-1 group">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors z-10" />
+          <div className="relative w-full lg:w-1/3 group">
+            <Search className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors z-10" />
             <input
               type="text"
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white border-2 border-gray-100 rounded-2xl pl-16 pr-6 py-5 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-dark placeholder-gray-400 text-lg font-medium relative"
+              className="w-full bg-white border-2 border-gray-100 rounded-2xl pl-12 sm:pl-16 pr-4 sm:pr-6 py-3.5 sm:py-5 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-dark placeholder-gray-400 text-base sm:text-lg font-medium relative"
             />
           </div>
 
           {/* Category tabs */}
-          <div className="flex gap-3 items-center bg-white p-2 rounded-2xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] border-2 border-gray-100 overflow-x-auto no-scrollbar scroll-smooth">
+          <div className="flex w-full lg:w-2/3 gap-3 items-center bg-white p-2 rounded-2xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] border-2 border-gray-100 overflow-x-auto no-scrollbar scroll-smooth">
             <button
               onClick={() => {
                 setActiveCategory('all');
                 setSearchParams({});
               }}
-              className={`whitespace-nowrap flex-shrink-0 px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
+              className={`whitespace-nowrap flex-shrink-0 px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
             >
               All
             </button>
@@ -127,7 +127,7 @@ const Products = () => {
                   setActiveCategory(cat.slug);
                   setSearchParams({ category: cat.slug });
                 }}
-                className={`whitespace-nowrap flex-shrink-0 px-6 py-3.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.slug ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
+                className={`whitespace-nowrap flex-shrink-0 px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.slug ? 'bg-dark text-primary shadow-lg' : 'bg-transparent text-gray-500 hover:text-dark hover:bg-gray-50'}`}
               >
                 {cat.name}
               </button>
@@ -158,16 +158,16 @@ const Products = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
 
-                <Link to={`/products/${product.slug}`} className="relative overflow-hidden bg-gray-50 h-64 block">
+                <Link to={`/products/${product.slug}`} className="relative overflow-hidden bg-white h-56 sm:h-64 flex items-center justify-center p-6 border-b border-gray-50">
                   <img
                     src={product.product_images?.[0]?.image_url || '/placeholder.png'}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
+                    className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop';
                     }}
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-dark text-xs font-black px-3 py-1.5 uppercase rounded-lg shadow-lg filter drop-shadow-md z-20">
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-dark text-[10px] sm:text-xs font-black px-3 py-1.5 uppercase rounded-lg shadow-md border border-gray-100 filter drop-shadow-sm z-20">
                     {product.categories?.name || 'Uncategorized'}
                   </div>
                 </Link>

@@ -379,11 +379,11 @@ const Home = () => {
                   whileHover={{ scale: 1.08, rotateX: 15, rotateY: -15, z: 50 }}
                   viewport={{ once: true, margin: "0px" }}
                   transition={{ duration: 0.4, delay: i * 0.03, type: "spring", stiffness: 100 }}
-                  className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] hover:border-primary/50 transition-all duration-300 group text-center relative overflow-hidden transform-gpu"
+                  className="bg-primary rounded-xl border border-primary/20 p-6 shadow-md hover:shadow-[0_15px_30px_-10px_rgba(34,197,94,0.4)] hover:bg-green-500 transition-all duration-300 group text-center relative overflow-hidden transform-gpu flex items-center justify-center"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                  <p className="font-bold text-dark group-hover:text-primary text-sm uppercase tracking-wide transition-colors">{app}</p>
+                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <p className="font-bold text-white text-sm uppercase tracking-wide transition-colors relative z-10">{app}</p>
                 </motion.div>
               ))}
             </div>

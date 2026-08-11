@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ABOUT_CONTENT, COMPANY_INFO, POLISHED_CONCRETE } from '../data/brochureData';
-import { CheckCircle, Factory, Target, Layers, Award } from 'lucide-react';
+import { CheckCircle, Factory, Target, Layers, Award, MapPin, Phone, Mail, Globe, Building2, Flag, Wrench, CloudOff, Lightbulb, ShieldCheck, Car, Banknote } from 'lucide-react';
 
 const About = () => {
   return (
@@ -139,34 +139,41 @@ const About = () => {
       </section>
 
       {/* Polished Concrete Advantages */}
-      <section className="py-12 md:py-20 bg-dark text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 md:mb-14">
-            <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Why Polished Concrete</p>
-            <h2 className="text-2xl sm:text-3xl font-bold uppercase">Polished Concrete Advantages</h2>
-            <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
+      <section className="py-24 bg-dark text-white relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark/95 to-[#0f172a] pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <p className="text-primary font-bold uppercase tracking-[0.2em] mb-3 text-sm drop-shadow-[0_0_10px_rgba(34,197,94,0.3)]">Why Polished Concrete</p>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-wide">Polished Concrete Advantages</h2>
+            <div className="w-20 h-1.5 bg-primary mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[2000px]">
-            {POLISHED_CONCRETE.advantages.map((adv, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
-                viewport={{ once: true, margin: "0px" }}
-                transition={{ duration: 0.3, delay: i * 0.04, type: "spring", stiffness: 100 }}
-                className="bg-dark rounded-2xl border border-gray-700 p-8 hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group relative overflow-hidden transform-gpu"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500"></div>
-                <h3 className="font-bold text-white mb-3 uppercase text-sm tracking-wider group-hover:text-primary transition-colors drop-shadow-md relative z-10">{adv.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed relative z-10">{adv.description}</p>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[2000px]">
+            {POLISHED_CONCRETE.advantages.map((adv, i) => {
+              const icons = [<CloudOff className="w-7 h-7" />, <Lightbulb className="w-7 h-7" />, <ShieldCheck className="w-7 h-7" />, <Wrench className="w-7 h-7" />, <Car className="w-7 h-7" />, <Banknote className="w-7 h-7" />];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+                  whileHover={{ scale: 1.05, rotateX: 10, rotateY: -10, z: 40, y: -10 }}
+                  viewport={{ once: true, margin: "0px" }}
+                  transition={{ duration: 0.3, delay: i * 0.04, type: "spring", stiffness: 100 }}
+                  className="bg-white/[0.03] backdrop-blur-md rounded-3xl border border-white/10 p-8 hover:bg-white/[0.06] hover:border-primary/50 hover:shadow-[0_20px_50px_-15px_rgba(34,197,94,0.2)] transition-all duration-500 group relative overflow-hidden transform-gpu"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500"></div>
+                  <div className="w-14 h-14 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-primary group-hover:border-primary/30 group-hover:bg-primary/10 transition-all duration-300 mb-6 shadow-sm relative z-10">
+                    {icons[i] || <CheckCircle className="w-7 h-7" />}
+                  </div>
+                  <h3 className="font-extrabold text-white mb-4 uppercase text-base tracking-widest group-hover:text-primary transition-colors drop-shadow-md relative z-10">{adv.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed relative z-10 group-hover:text-gray-300 transition-colors">{adv.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
-          <div className="flex flex-wrap justify-center gap-3 mt-12">
+          <div className="flex flex-wrap justify-center gap-4 mt-16">
             {POLISHED_CONCRETE.properties.map((prop, i) => (
-              <span key={i} className="border border-primary text-primary text-sm font-semibold px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+              <span key={i} className="px-6 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold tracking-wider hover:bg-primary hover:text-white hover:scale-105 hover:shadow-[0_10px_20px_-5px_rgba(34,197,94,0.4)] transition-all cursor-default">
                 {prop}
               </span>
             ))}
@@ -175,43 +182,101 @@ const About = () => {
       </section>
 
       {/* Company Details */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-dark uppercase">Company Information</h2>
-            <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
+      <section className="py-24 bg-gray-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <p className="text-primary font-semibold uppercase tracking-widest mb-3 text-sm">Get In Touch</p>
+            <h2 className="text-4xl font-black text-dark uppercase tracking-wide">Company Information</h2>
+            <div className="w-20 h-1.5 bg-primary mx-auto mt-6 rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:border-primary/30 transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <h3 className="font-extrabold text-dark uppercase tracking-wider mb-5 text-sm group-hover:text-primary transition-colors relative z-10">Address</h3>
-              <p className="text-gray-600 text-sm leading-loose relative z-10">
-                {COMPANY_INFO.address.line1}<br />
-                {COMPANY_INFO.address.line2}<br />
-                {COMPANY_INFO.address.line3}<br />
-                {COMPANY_INFO.address.city} &ndash; {COMPANY_INFO.address.pincode}<br />
-                {COMPANY_INFO.address.state}, {COMPANY_INFO.address.country}
-              </p>
-            </div>
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:border-primary/30 transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <h3 className="font-extrabold text-dark uppercase tracking-wider mb-5 text-sm group-hover:text-primary transition-colors relative z-10">Contact</h3>
-              <div className="space-y-3 text-sm text-gray-600 relative z-10">
-                {COMPANY_INFO.phone.map((p, i) => <p key={i} className="flex items-center gap-2"><span className="text-xl">📞</span> {p}</p>)}
-                <p className="flex items-center gap-2"><span className="text-xl">✉</span> {COMPANY_INFO.email}</p>
-                <p className="flex items-center gap-2"><span className="text-xl">🌐</span> {COMPANY_INFO.website}</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto perspective-[2000px]">
+            {/* Address Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, z: 20 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="bg-white rounded-3xl border border-gray-100 p-10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_30px_60px_-20px_rgba(34,197,94,0.15)] hover:border-primary/30 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 mb-8 shadow-sm">
+                <MapPin className="w-7 h-7" />
               </div>
-            </div>
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:border-primary/30 transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <h3 className="font-extrabold text-dark uppercase tracking-wider mb-5 text-sm group-hover:text-primary transition-colors relative z-10">Quick Facts</h3>
-              <div className="space-y-3 text-sm text-gray-600 relative z-10">
-                <p className="flex items-center gap-2"><span className="text-xl">🏭</span> Founded: {COMPANY_INFO.founded}</p>
-                <p className="flex items-center gap-2"><span className="text-xl">🇮🇳</span> {COMPANY_INFO.madeIn}</p>
-                <p className="flex items-center gap-2"><span className="text-xl">🔧</span> Grinding · Polishing · Systems</p>
-                <p className="flex items-center gap-2"><span className="text-xl">📍</span> Pan-India Distribution</p>
+              <h3 className="font-extrabold text-dark uppercase tracking-widest mb-6 text-sm group-hover:text-primary transition-colors">Headquarters</h3>
+              <div className="text-gray-500 text-sm leading-relaxed space-y-1 relative">
+                <p className="font-medium text-gray-700">{COMPANY_INFO.address.line1}</p>
+                <p>{COMPANY_INFO.address.line2}</p>
+                <p>{COMPANY_INFO.address.line3}</p>
+                <p className="pt-2">{COMPANY_INFO.address.city} &ndash; {COMPANY_INFO.address.pincode}</p>
+                <p>{COMPANY_INFO.address.state}, {COMPANY_INFO.address.country}</p>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Contact Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, z: 20 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="bg-white rounded-3xl border border-gray-100 p-10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_30px_60px_-20px_rgba(34,197,94,0.15)] hover:border-primary/30 transition-all duration-300 group relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 mb-8 shadow-sm relative z-10">
+                <Phone className="w-7 h-7" />
+              </div>
+              <h3 className="font-extrabold text-dark uppercase tracking-widest mb-6 text-sm group-hover:text-primary transition-colors relative z-10">Contact Details</h3>
+              <div className="space-y-5 text-sm text-gray-500 relative z-10">
+                {COMPANY_INFO.phone.map((p, i) => (
+                  <div key={i} className="flex items-center gap-4 group/item cursor-pointer">
+                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors"><Phone className="w-4 h-4" /></div>
+                    <span className="font-medium hover:text-primary transition-colors">{p}</span>
+                  </div>
+                ))}
+                <div className="flex items-center gap-4 group/item cursor-pointer pt-2 border-t border-gray-100">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors"><Mail className="w-4 h-4" /></div>
+                  <span className="font-medium hover:text-primary transition-colors">{COMPANY_INFO.email}</span>
+                </div>
+                <div className="flex items-center gap-4 group/item cursor-pointer">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors"><Globe className="w-4 h-4" /></div>
+                  <span className="font-medium hover:text-primary transition-colors">{COMPANY_INFO.website}</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Quick Facts Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, z: 20 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="bg-white rounded-3xl border border-gray-100 p-10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_30px_60px_-20px_rgba(34,197,94,0.15)] hover:border-primary/30 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 mb-8 shadow-sm">
+                <Building2 className="w-7 h-7" />
+              </div>
+              <h3 className="font-extrabold text-dark uppercase tracking-widest mb-6 text-sm group-hover:text-primary transition-colors">Quick Facts</h3>
+              <div className="space-y-5 text-sm text-gray-500">
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary"><Factory className="w-4 h-4" /></div>
+                  <span className="font-medium text-gray-700">Founded: {COMPANY_INFO.founded}</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary"><Flag className="w-4 h-4" /></div>
+                  <span className="font-medium text-gray-700">{COMPANY_INFO.madeIn}</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary"><Wrench className="w-4 h-4" /></div>
+                  <span className="font-medium text-gray-700">Grinding &amp; Polishing</span>
+                </div>
+                <div className="flex items-center gap-4 pt-2 border-t border-gray-100">
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary"><MapPin className="w-4 h-4" /></div>
+                  <span className="font-medium text-primary">Pan-India Distribution</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
