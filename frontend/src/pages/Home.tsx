@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronRight, ShieldCheck, Factory, Award, CheckCircle } from 'lucide-react';
 import { CATEGORIES, CLIENTS, POLISHED_CONCRETE } from '../data/brochureData';
 import { useState, useEffect } from 'react';
@@ -16,6 +16,7 @@ interface DbProduct {
 }
 
 const Home = () => {
+  const navigate = useNavigate();
   const [featuredProducts, setFeaturedProducts] = useState<DbProduct[]>([]);
 
   useEffect(() => {
@@ -196,7 +197,7 @@ const Home = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-primary/20 transform translate-x-4 translate-y-4 rounded-3xl -z-10"></div>
                   <img
-                    src="/brochure-images/ai_walk_behind_trowel.png"
+                    src="/brochure-images/ai_walk_behind_factory.png"
                     alt="KIA Motors — SmartGrit Polished Concrete Floor"
                     className="w-full h-64 sm:h-80 lg:h-[550px] object-cover rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] transform hover:scale-[1.02] hover:-rotate-1 transition-all duration-500"
                   />
@@ -265,32 +266,32 @@ const Home = () => {
               {CATEGORIES.map((cat, idx) => (
                 <motion.div
                   key={cat.id}
+                  onClick={() => navigate(`/products?category=${cat.slug}`)}
                   initial={{ opacity: 0, scale: 0.9, rotateX: -15, z: -50 }}
                   whileInView={{ opacity: 1, scale: 1, rotateX: 0, z: 0 }}
                   whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
                   viewport={{ once: true, margin: "0px" }}
                   transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                   className="group relative h-80 rounded-2xl overflow-hidden bg-dark border border-gray-700 cursor-pointer hover:border-primary/50 hover:shadow-[0_20px_50px_-10px_rgba(34,197,94,0.3)] transition-all duration-500 z-0 hover:z-10 transform-gpu"
-                  style={{ transformStyle: "preserve-3d" }}
+                  style={{ transformStyle: "preserve-3d", WebkitTapHighlightColor: "transparent" }}
                 >
                   <img
                     src={cat.image}
                     alt={cat.name}
-                    className="w-full h-full object-cover opacity-50 group-hover:scale-110 group-hover:opacity-30 transition-all duration-700"
+                    className="w-full h-full object-cover opacity-50 md:group-hover:scale-110 md:group-hover:opacity-30 transition-all duration-700"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-wide group-hover:text-primary transition-colors drop-shadow-md">{cat.name}</h3>
-                    <p className="text-gray-300 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{cat.description}</p>
-                    <Link
-                      to={`/products?category=${cat.slug}`}
-                      className="inline-flex items-center text-primary text-sm font-bold uppercase tracking-wider hover:text-white transition-colors bg-primary/20 hover:bg-primary px-4 py-2 rounded-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 duration-500 delay-150"
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 pointer-events-none">
+                    <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-wide md:group-hover:text-primary transition-colors drop-shadow-md">{cat.name}</h3>
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100">{cat.description}</p>
+                    <span
+                      className="inline-flex items-center text-primary text-sm font-bold uppercase tracking-wider bg-primary/20 px-4 py-2 rounded-lg backdrop-blur-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 delay-150"
                     >
                       View Products <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
+                    </span>
                   </div>
                 </motion.div>
               ))}

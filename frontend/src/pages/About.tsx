@@ -10,7 +10,7 @@ const About = () => {
       <div className="relative bg-dark text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/brochure-images/ai_walk_behind_trowel.png"
+            src="/brochure-images/ai_walk_behind_factory.png"
             alt="SmartGrit Industrial Polishing"
             className="w-full h-full object-cover opacity-20"
           />
@@ -52,7 +52,7 @@ const About = () => {
 
           <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} className="relative transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <img
-              src="/brochure-images/ai_ride_on_trowel_1.png"
+              src="/brochure-images/ai_ride_on_factory.png"
               alt="SmartGrit Polishing in Action — Peekay Steels"
               className="w-full h-64 sm:h-80 lg:h-[400px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl"
             />

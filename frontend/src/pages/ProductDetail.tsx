@@ -125,25 +125,25 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Images */}
           <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} className="lg:col-span-7 lg:sticky lg:top-28 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
-            <div className="bg-gray-50 border border-gray-100 overflow-hidden mb-4 rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] group">
+            <div className="bg-white border border-gray-100 overflow-hidden mb-4 rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] group flex items-center justify-center p-4 sm:p-8">
               <img
                 src={images[activeImage]}
                 alt={product.name}
-                className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[500px] object-contain transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800';
                 }}
               />
             </div>
             {images.length > 1 && (
-              <div className="flex gap-3">
+              <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImage(idx)}
-                    className={`w-24 h-24 border-2 overflow-hidden rounded-xl transition-all duration-300 ${activeImage === idx ? 'border-primary shadow-lg shadow-primary/20 scale-105' : 'border-gray-200 opacity-60 hover:opacity-100'}`}
+                    className={`w-20 h-20 sm:w-24 sm:h-24 shrink-0 border-2 bg-white overflow-hidden rounded-xl transition-all duration-300 p-2 ${activeImage === idx ? 'border-primary shadow-lg shadow-primary/20 scale-105' : 'border-gray-200 opacity-60 hover:opacity-100'}`}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=200'; }} />
+                    <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=200'; }} />
                   </button>
                 ))}
               </div>

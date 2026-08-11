@@ -9,9 +9,9 @@ const Applications = () => {
       <div className="relative bg-dark text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/brochure-images/ai_polished_concrete_floor.png"
+            src="/brochure-images/services_engineer_bg.png"
             alt="Polished Concrete Industrial Application"
-            className="w-full h-full object-cover opacity-30 object-left"
+            className="w-full h-full object-cover opacity-20 object-left"
           />
           <div className="absolute inset-0 bg-dark/60"></div>
         </div>
@@ -97,11 +97,11 @@ const Applications = () => {
               </div>
               <div className="relative h-full min-h-[400px]">
                 <img
-                  src="/brochure-images/ai_walk_behind_trowel.png"
+                  src="/brochure-images/ai_walk_behind_factory.png"
                   alt="Densification Process"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/20 to-transparent lg:block hidden"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-transparent lg:block hidden"></div>
               </div>
             </div>
           </div>
@@ -241,18 +241,6 @@ const Applications = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          <div className="mt-20 text-center relative rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] group cursor-pointer">
-            <img
-              src="/brochure-images/ai_ride_on_trowel_2.png"
-              alt="SmartGrit Concrete Polishing Systems"
-              className="w-full h-auto max-h-[85vh] object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent flex flex-col items-center justify-end pb-16 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-white text-3xl sm:text-4xl font-black uppercase tracking-widest drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] mb-2 transform group-hover:-translate-y-2 transition-transform duration-300">Achieve The Perfect Finish</h3>
-              <div className="w-16 h-1 bg-primary rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100 shadow-[0_0_15px_rgba(34,197,94,0.8)]"></div>
-            </div>
           </div>
         </div>
       </section>

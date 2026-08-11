@@ -72,8 +72,26 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Keep for any future scroll logic if needed, but not used for navbar styling anymore
-  }, []);
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+    
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (isOpen && !(e.target as Element).closest('header')) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <>

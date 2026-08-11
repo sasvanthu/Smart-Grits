@@ -76,7 +76,7 @@ const Products = () => {
     <div className="bg-gray-50 min-h-screen">
       <div className="relative bg-dark text-white pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden rounded-b-[3rem] mb-8 md:mb-12 shadow-2xl">
         <div className="absolute inset-0">
-          <img src="/brochure-images/ai_polished_concrete_floor.png" alt="SmartGrit Products" className="w-full h-full object-cover opacity-30" />
+          <img src="/brochure-images/products_engineer_bg.png" alt="SmartGrit Products" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent"></div>
         </div>
@@ -144,7 +144,7 @@ const Products = () => {
 
         {/* Product Grid */}
         {!isLoading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 perspective-[2000px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-6 perspective-[2000px]">
             {filteredProducts.map((product, idx) => (
               <motion.div
                 key={product.id}
@@ -153,10 +153,10 @@ const Products = () => {
                 whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
                 viewport={{ once: true, margin: "0px" }}
                 transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
-                className="bg-white rounded-3xl border border-gray-100 group hover:border-primary/30 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col overflow-hidden relative transform-gpu"
+                className="bg-white rounded-3xl border border-gray-100 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] group md:hover:border-primary/30 md:hover:shadow-[0_40px_70px_-20px_rgba(0,0,0,0.2)] transition-all duration-500 flex flex-col overflow-hidden relative transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 md:group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
 
                 <Link to={`/products/${product.slug}`} className="relative overflow-hidden bg-white h-56 sm:h-64 flex items-center justify-center p-6 border-b border-gray-50">
                   <img
