@@ -61,7 +61,7 @@ const Contact = () => {
       {/* Header */}
       <div className="bg-dark text-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Get in Touch</p>
             <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-wider mb-4">Contact Us</h1>
             <div className="w-24 h-1 bg-primary mb-6"></div>
@@ -75,7 +75,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="space-y-6 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} className="space-y-6 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <div className="bg-white p-8 border border-gray-200">
               <h3 className="text-xl font-bold text-dark mb-6 uppercase tracking-wider">SmartGrit Polishing System</h3>
               <div className="space-y-6">
@@ -148,7 +148,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div initial={{ opacity: 0, x: 30, rotateY: -15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: 30, rotateY: -15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} className="transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <div className="bg-white p-8 border border-gray-200">
               <h3 className="text-xl font-bold text-dark mb-6 uppercase tracking-wider">Send a Message</h3>
 

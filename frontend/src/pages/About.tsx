@@ -16,7 +16,7 @@ const About = () => {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:pt-40 md:pb-24">
-          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Who We Are</p>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider mb-4">About SmartGrit</h1>
             <div className="w-24 h-1 bg-primary mb-6"></div>
@@ -30,7 +30,7 @@ const About = () => {
       {/* About Content */}
       <section className="py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Our Story</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-dark uppercase mb-4">SmartGrit Polishing System</h2>
             <div className="w-16 h-1 bg-primary mb-6"></div>
@@ -50,7 +50,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} className="relative transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} className="relative transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <img
               src="/brochure-images/ai_ride_on_trowel_1.png"
               alt="SmartGrit Polishing in Action — Peekay Steels"
@@ -84,9 +84,9 @@ const About = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                 className="text-center p-10 bg-white rounded-2xl border border-gray-100 hover:border-primary/50 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group relative overflow-hidden transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -116,11 +116,11 @@ const About = () => {
       {/* Product Technology */}
       <section className="py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30, rotateY: -15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: -30, rotateY: -15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} style={{ transformStyle: "preserve-3d" }}>
             <img src="/brochure-images/WhatsApp Image 2026-07-25 at 11.18.21 AM (1).jpeg" alt="SmartGrit Polishing System Discs" className="w-full h-64 sm:h-80 lg:h-[450px] object-cover object-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] rounded-2xl" />
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: 30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Product Technology</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-dark uppercase mb-4">SmartGrit Diamond Tools</h2>
             <div className="w-16 h-1 bg-primary mb-6"></div>
@@ -152,9 +152,9 @@ const About = () => {
                 key={i}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.08, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: i * 0.04, type: "spring", stiffness: 100 }}
                 className="bg-dark rounded-2xl border border-gray-700 p-8 hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group relative overflow-hidden transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >

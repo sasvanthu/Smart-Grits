@@ -143,7 +143,7 @@ const Home = () => {
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent z-0 origin-left"
             />
@@ -167,7 +167,7 @@ const Home = () => {
           {/* About Teaser */}
           <section className="py-12 md:py-20 flex-grow flex items-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
-              <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+              <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} style={{ transformStyle: "preserve-3d" }}>
                 <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-xs sm:text-sm">Who We Are</p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark uppercase tracking-wider mb-4">
                   SmartGrit Polishing System
@@ -192,7 +192,7 @@ const Home = () => {
                 </Link>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} viewport={{ once: true, margin: "-50px" }} style={{ transformStyle: "preserve-3d" }}>
+              <motion.div initial={{ opacity: 0, x: 30, rotateY: 15, z: -50 }} whileInView={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} viewport={{ once: true, margin: "0px" }} style={{ transformStyle: "preserve-3d" }}>
                 <div className="relative">
                   <div className="absolute inset-0 bg-primary/20 transform translate-x-4 translate-y-4 rounded-3xl -z-10"></div>
                   <img
@@ -227,9 +227,9 @@ const Home = () => {
                   key={idx}
                   initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                  whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                  viewport={{ once: true, margin: "0px" }}
+                  transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                   className="p-8 rounded-2xl border border-gray-100 bg-white group hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-300 relative overflow-hidden transform-gpu"
                   style={{ transformStyle: "preserve-3d" }}
                 >
@@ -267,9 +267,9 @@ const Home = () => {
                   key={cat.id}
                   initial={{ opacity: 0, scale: 0.9, rotateX: -15, z: -50 }}
                   whileInView={{ opacity: 1, scale: 1, rotateX: 0, z: 0 }}
-                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                  whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                  viewport={{ once: true, margin: "0px" }}
+                  transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                   className="group relative h-80 rounded-2xl overflow-hidden bg-dark border border-gray-700 cursor-pointer hover:border-primary/50 hover:shadow-[0_20px_50px_-10px_rgba(34,197,94,0.3)] transition-all duration-500 z-0 hover:z-10 transform-gpu"
                   style={{ transformStyle: "preserve-3d" }}
                 >
@@ -315,9 +315,9 @@ const Home = () => {
                   key={product.id}
                   initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.08, type: "spring", stiffness: 100 }}
+                  whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                  viewport={{ once: true, margin: "0px" }}
+                  transition={{ duration: 0.3, delay: idx * 0.04, type: "spring", stiffness: 100 }}
                   className="bg-white rounded-2xl border border-gray-100 overflow-hidden group hover:border-primary/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 relative transform-gpu"
                   style={{ transformStyle: "preserve-3d" }}
                 >
@@ -376,9 +376,9 @@ const Home = () => {
                   key={i}
                   initial={{ opacity: 0, y: 30, rotateX: -15, z: -20 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                  whileHover={{ scale: 1.05, rotateX: 10, rotateY: -10, z: 30 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: i * 0.05, type: "spring", stiffness: 100 }}
+                  whileHover={{ scale: 1.08, rotateX: 15, rotateY: -15, z: 50 }}
+                  viewport={{ once: true, margin: "0px" }}
+                  transition={{ duration: 0.4, delay: i * 0.03, type: "spring", stiffness: 100 }}
                   className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] hover:border-primary/50 transition-all duration-300 group text-center relative overflow-hidden transform-gpu"
                   style={{ transformStyle: "preserve-3d" }}
                 >

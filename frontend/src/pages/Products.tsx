@@ -81,7 +81,7 @@ const Products = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} className="max-w-3xl" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: -30, rotateX: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring", bounce: 0.4 }} className="max-w-3xl" style={{ transformStyle: "preserve-3d" }}>
             <div className="inline-flex items-center gap-2 px-5 py-2 bg-primary/20 border border-primary/50 text-primary text-xs sm:text-sm font-bold tracking-widest uppercase mb-6 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               SmartGrit Product Range
@@ -150,9 +150,9 @@ const Products = () => {
                 key={product.id}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.05, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                 className="bg-white rounded-3xl border border-gray-100 group hover:border-primary/30 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col overflow-hidden relative transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >

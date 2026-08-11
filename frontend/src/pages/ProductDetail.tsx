@@ -124,7 +124,7 @@ const ProductDetail = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Images */}
-          <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="lg:col-span-7 lg:sticky lg:top-28 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: -30, rotateY: 15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} className="lg:col-span-7 lg:sticky lg:top-28 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <div className="bg-gray-50 border border-gray-100 overflow-hidden mb-4 rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] group">
               <img
                 src={images[activeImage]}
@@ -151,7 +151,7 @@ const ProductDetail = () => {
           </motion.div>
 
           {/* Product Info */}
-          <motion.div initial={{ opacity: 0, x: 30, rotateY: -15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.8, type: "spring" }} className="lg:col-span-5 flex flex-col pt-4 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, x: 30, rotateY: -15, z: -50 }} animate={{ opacity: 1, x: 0, rotateY: 0, z: 0 }} transition={{ duration: 0.4, type: "spring" }} className="lg:col-span-5 flex flex-col pt-4 transform-gpu" style={{ transformStyle: "preserve-3d" }}>
             <div className="inline-flex items-center text-xs font-black text-primary uppercase tracking-widest mb-4 bg-primary/10 px-4 py-2 rounded-lg">
               {product.categories?.name || 'Uncategorized'}
             </div>

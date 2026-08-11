@@ -16,7 +16,7 @@ const Applications = () => {
           <div className="absolute inset-0 bg-dark/60"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:pt-40 md:pb-24">
-          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
+          <motion.div initial={{ opacity: 0, y: 50, rotateX: 20, z: -100 }} animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }} transition={{ duration: 0.4, type: "spring", bounce: 0.4 }} style={{ transformStyle: "preserve-3d" }}>
             <p className="text-primary font-semibold uppercase tracking-widest mb-2 text-sm">Solutions</p>
             <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider mb-4">Services</h1>
             <div className="w-24 h-1 bg-primary mb-6"></div>
@@ -42,9 +42,9 @@ const Applications = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                 className="bg-dark text-white p-10 rounded-3xl border border-white/10 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] hover:border-primary/50 transition-all duration-500 relative overflow-hidden group transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -59,10 +59,10 @@ const Applications = () => {
           </div>
 
           {/* Densification process */}
-          <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden mt-16 shadow-lg">
+          <div className="bg-primary border border-primary rounded-3xl overflow-hidden mt-16 shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="p-10 lg:p-16 flex flex-col justify-center">
-                <h3 className="text-3xl font-black text-dark uppercase mb-10 tracking-wide">Densification Process</h3>
+                <h3 className="text-3xl font-black text-white uppercase mb-10 tracking-wide">Densification Process</h3>
                 <div className="space-y-10">
                   {[
                     {
@@ -85,11 +85,11 @@ const Applications = () => {
                     },
                   ].map((step, idx) => (
                     <div key={idx} className="flex gap-6 group">
-                      <div className="text-primary/20 font-black text-6xl leading-none w-16 shrink-0 group-hover:text-primary transition-colors">{step.step}</div>
+                      <div className="text-white/30 font-black text-6xl leading-none w-16 shrink-0 group-hover:text-white transition-colors">{step.step}</div>
                       <div>
-                        <div className="text-primary mb-3 bg-white w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white transition-all">{step.icon}</div>
-                        <h4 className="font-extrabold text-dark uppercase text-base tracking-wider mb-2">{step.title}</h4>
-                        <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                        <div className="text-primary mb-3 bg-white w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:bg-gray-100 transition-all">{step.icon}</div>
+                        <h4 className="font-extrabold text-white uppercase text-base tracking-wider mb-2">{step.title}</h4>
+                        <p className="text-white/80 text-sm leading-relaxed">{step.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -101,7 +101,7 @@ const Applications = () => {
                   alt="Densification Process"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-gray-50/20 to-transparent lg:block hidden"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/20 to-transparent lg:block hidden"></div>
               </div>
             </div>
           </div>
@@ -123,9 +123,9 @@ const Applications = () => {
                 key={i}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.07, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: i * 0.04, type: "spring", stiffness: 100 }}
                 className="bg-dark border border-gray-700 p-8 rounded-2xl hover:border-primary/50 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group relative overflow-hidden transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -162,9 +162,9 @@ const Applications = () => {
                 key={i}
                 initial={{ opacity: 0, scale: 0.9, rotateX: -15, z: -20 }}
                 whileInView={{ opacity: 1, scale: 1, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 10, rotateY: -10, z: 30 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.05, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 15, rotateY: -15, z: 50 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.4, delay: i * 0.03, type: "spring", stiffness: 100 }}
                 className="bg-primary/10 border-l-4 border-primary p-5 hover:bg-primary hover:text-white transition-all group transform-gpu"
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -215,9 +215,9 @@ const Applications = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 50, rotateX: -15, z: -50 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
-                whileHover={{ scale: 1.05, rotateX: 5, rotateY: -5, z: 20 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.08, rotateX: 12, rotateY: -12, z: 40 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.3, delay: idx * 0.03, type: "spring", stiffness: 100 }}
                 className={`${opt.bg} border-t-4 ${opt.borderColor} p-10 rounded-b-2xl shadow-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group transform-gpu`}
                 style={{ transformStyle: "preserve-3d" }}
               >

@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: Number(process.env.SMTP_PORT) || 587,
-      secure: false,
+      secure: Number(process.env.SMTP_PORT) === 465,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -63,7 +63,7 @@ ${message}
     res.status(200).json({ success: true, message: 'Email sent successfully' });
   } catch (error: any) {
     console.error('Error sending email:', error);
-    res.status(500).json({ success: false, error: 'Failed to send email' });
+    res.status(500).json({ success: false, error: 'Failed to send email: ' + error.message });
   }
 });
 
