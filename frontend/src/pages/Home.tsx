@@ -69,15 +69,10 @@ const Home = () => {
                 className="absolute inset-0 w-full h-full object-cover object-center opacity-100 brightness-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/10 to-transparent"></div>
-              {/* Dark left-side gradient — stops exactly at the metallic separator ring (~20% left) */}
-              <div
-                className="absolute inset-0 hidden md:block"
-                style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.1) 22%, transparent 28%)' }}
-              ></div>
             </div>
 
-            {/* Left Container — Revolving Product Stickers */}
-            <div className="absolute inset-0 pointer-events-none hidden lg:block" style={{ transformStyle: 'preserve-3d' }}>
+            {/* Revolving Product Carousel */}
+            <div className="absolute inset-0 pointer-events-none" style={{ transformStyle: 'preserve-3d' }}>
               <RevolvingProducts />
             </div>
           </div>

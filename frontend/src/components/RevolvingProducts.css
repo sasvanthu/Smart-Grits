@@ -1,338 +1,190 @@
-/* ── Revolving Product Stickers ─────────────────────────────────────────────── */
+/* ── Revolving Product Carousel ────────────────────────────────────────────── */
 
+/*
+ * Container anchored at the left-center of the hero.
+ * Products travel in a VERTICAL loop, like a Ferris wheel facing the viewer.
+ * The "dock" (front-most position) is at the vertical center.
+ */
 .revolving-orbit {
   position: absolute;
+  /* Dock zone sits in the left-center block the user indicated */
   top: 50%;
-  left: 20%;
+  left: 14%;
   transform: translate(-50%, -50%);
-  /* Variables for the outer glowing curve */
-  --curve-padding: 340px;
   width: 0;
   height: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1280px) {
+  .revolving-orbit {
+    left: 18%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .revolving-orbit {
+    left: 22%;
+  }
 }
 
 @media (max-width: 768px) {
   .revolving-orbit {
-    left: 5%;
-    top: 50%;
-    --curve-padding: 220px;
+    left: 50%;
+    top: 40%;
   }
 }
 
-/* Each sticker item orbits in 3D */
-.orbit-item {
+/* ── Dock glow — ambient light at the "pop" position ─────────────────────── */
+.orbit-dock-glow {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform-style: preserve-3d;
-  width: 0;
-  height: 0;
-  animation: orbit3d 15s linear infinite;
-  animation-delay: var(--orbit-delay, 0s);
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    rgba(34, 197, 94, 0.18) 0%,
+    rgba(34, 197, 94, 0.06) 50%,
+    transparent 75%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
 }
 
+@media (max-width: 768px) {
+  .orbit-dock-glow {
+    width: 200px;
+    height: 200px;
+  }
+}
 
+/* ── Each orbit item — JS-driven absolute positioning ────────────────────── */
+.orbit-item-js {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.08s linear,
+    transform 0.08s linear;
+}
 
-/* The sticker card */
+.orbit-item-js.is-docked {
+  pointer-events: auto;
+}
+
+/* ── Product sticker card ─────────────────────────────────────────────────── */
 .product-sticker {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  transition: filter 0.4s ease;
-  /* Removed outer drop shadow so it wraps the image pixels directly */
+  text-decoration: none;
+  pointer-events: inherit;
 }
 
-.product-sticker:hover {
-  /* Keep any text changes but remove outer shadow as it's moved to the image */
-}
-
-/* Product image – no background, just the product shape */
+/* ── Image wrapper ────────────────────────────────────────────────────────── */
 .sticker-image-wrapper {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .sticker-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
+  filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+  transition: filter 0.3s ease;
 }
 
-.product-sticker:hover .sticker-image-wrapper img {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 16px rgba(34, 197, 94, 1));
+/* When docked — extra glow pulse on the image */
+.sticker-image-wrapper.is-docked img {
+  filter:
+    drop-shadow(0 0 20px rgba(34, 197, 94, 0.9))
+    drop-shadow(0 0 40px rgba(34, 197, 94, 0.4));
+  animation: dock-pulse 1.5s ease-in-out infinite;
 }
 
-/* Product name label */
+@keyframes dock-pulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 18px rgba(34, 197, 94, 0.9))
+      drop-shadow(0 0 40px rgba(34, 197, 94, 0.4));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 28px rgba(34, 197, 94, 1))
+      drop-shadow(0 0 60px rgba(34, 197, 94, 0.6));
+  }
+}
+
+/* ── Product name label ───────────────────────────────────────────────────── */
 .sticker-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
-  max-width: 130px;
+  max-width: 140px;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  padding: 3px 8px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: all 0.3s ease;
+  opacity: 0;
 }
 
-.product-sticker:hover .sticker-label {
+/* Show label only at docked position */
+.sticker-label.is-docked {
+  opacity: 1;
   color: #22c55e;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.15em;
 }
 
-/* ── 3D Showcase Wheel Keyframe ────────────────────────────────────────────── */
-/*
- * Normal size → approaches center → POP/ENLARGE → brief hold → SHRINK → normal size
- * Front (closest to viewer, vertical center) = 50% mark (angle = 180°)
- * Back (furthest from viewer, behind video) = 0% and 100%
- */
-@keyframes orbit3d {
-
-  /* === ROLLING CIRCLE === */
-  /* Back half - invisible */
-  0% {
-    transform: rotateX(180deg) translateZ(var(--orbit-radius, 400px)) rotateX(-180deg) scale(0.35);
-    opacity: 0;
-    z-index: 1;
-  }
-
-  /* Front-bottom rising up */
-  15% {
-    transform: rotateX(126deg) translateZ(var(--orbit-radius, 400px)) rotateX(-126deg) scale(0.45);
-    opacity: 0.35;
-    z-index: 3;
-  }
-
-  30% {
-    transform: rotateX(72deg) translateZ(var(--orbit-radius, 400px)) rotateX(-72deg) scale(0.55);
-    opacity: 0.5;
-    z-index: 5;
-  }
-
-  /* Approaching - stays small until very close */
-  42% {
-    transform: rotateX(32.4deg) translateZ(var(--orbit-radius, 400px)) rotateX(-32.4deg) scale(0.6);
-    opacity: 0.6;
-    z-index: 6;
-  }
-
-  /* === DOCK ZONE - rapid enlarge (only 3% window to avoid collision) === */
-  44% {
-    transform: rotateX(10deg) translateZ(var(--orbit-radius, 400px)) rotateX(-10deg) scale(1.3);
-    opacity: 0.9;
-    z-index: 9;
-  }
-
-  /* === DOCKED (10% = 1.5s) === */
-  45% {
-    transform: rotateX(0deg) translateZ(var(--orbit-radius, 400px)) rotateX(0deg) scale(1.6);
-    opacity: 1.0;
-    z-index: 10;
-  }
-
-  55% {
-    transform: rotateX(0deg) translateZ(var(--orbit-radius, 400px)) rotateX(0deg) scale(1.6);
-    opacity: 1.0;
-    z-index: 10;
-  }
-
-  /* === DOCK ZONE - rapid shrink back === */
-  56% {
-    transform: rotateX(-10deg) translateZ(var(--orbit-radius, 400px)) rotateX(10deg) scale(1.3);
-    opacity: 0.9;
-    z-index: 9;
-  }
-
-  /* Back to rolling circle size */
-  58% {
-    transform: rotateX(-32.4deg) translateZ(var(--orbit-radius, 400px)) rotateX(32.4deg) scale(0.6);
-    opacity: 0.6;
-    z-index: 6;
-  }
-
-  70% {
-    transform: rotateX(-72deg) translateZ(var(--orbit-radius, 400px)) rotateX(72deg) scale(0.55);
-    opacity: 0.5;
-    z-index: 5;
-  }
-
-  /* Going around back - fade out */
-  85% {
-    transform: rotateX(-126deg) translateZ(var(--orbit-radius, 400px)) rotateX(126deg) scale(0.45);
-    opacity: 0.35;
-    z-index: 3;
-  }
-
-  100% {
-    transform: rotateX(-180deg) translateZ(var(--orbit-radius, 400px)) rotateX(180deg) scale(0.35);
-    opacity: 0;
-    z-index: 1;
-  }
-}
-
-/* ── Responsive Sizes ──────────────────────────────────────────────────────── */
-
+/* ── Responsive image sizes ───────────────────────────────────────────────── */
 @media (min-width: 768px) {
   .sticker-image-wrapper {
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
   }
-
   .sticker-label {
-    font-size: 15px;
-    max-width: 190px;
+    font-size: 13px;
+    max-width: 200px;
   }
 }
 
 @media (min-width: 1024px) {
   .sticker-image-wrapper {
-    width: 220px;
-    height: 220px;
+    width: 230px;
+    height: 230px;
   }
-
   .sticker-label {
-    font-size: 16px;
-    max-width: 230px;
+    font-size: 15px;
+    max-width: 250px;
   }
 }
 
-/* ── Orbit Glow ────────────────────────────────────────────────────────────── */
-.orbit-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(var(--orbit-radius) * 2.8);
-  height: calc(var(--orbit-radius) * 2.8);
-  /* Significantly reduced opacity for a subtler effect */
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 40%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes glow-pulse {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: translate(-50%, -50%) rotateY(45deg) scale(0.9);
+@media (min-width: 1440px) {
+  .sticker-image-wrapper {
+    width: 260px;
+    height: 260px;
   }
-
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) rotateY(45deg) scale(1.1);
-  }
-}
-
-.orbit-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  pointer-events: none;
-  width: calc(var(--orbit-radius, 400px) * 2);
-  height: calc(var(--orbit-radius, 400px) * 2);
-  /* The ring is in the XY plane, so just center it, it will inherit the container's rotateX */
-  transform: translate(-50%, -50%);
-  border: 1px dashed rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 40px rgba(34, 197, 94, 0.05);
-  animation: ring-rotate 60s linear infinite;
-}
-
-@keyframes ring-rotate {
-  from {
-    transform: translate(-50%, -50%) rotateY(90deg) rotateX(0deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotateY(90deg) rotateX(360deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .orbit-glow {
-    width: 200px;
-    height: 200px;
-  }
-}
-
-/* ── Orbit Separator ───────────────────────────────────────────────────────────── */
-.orbit-separator {
-  position: absolute;
-  /* Mathematically place the top-left of the circle so its right edge touches x=0 */
-  top: calc(var(--orbit-radius) * -1);
-  left: calc(var(--orbit-radius) * -2);
-  width: calc(var(--orbit-radius) * 2);
-  height: calc(var(--orbit-radius) * 2);
-  border-radius: 50%;
-  pointer-events: none;
-
-  /* Metallic curve separator line perfectly tracing the orbit path */
-  box-shadow:
-    inset -1px 0 0 #ffffff,
-    /* Bright highlight edge */
-    inset -5px 0 0 #9ca3af,
-    /* Metallic grey body */
-    inset -12px 0 15px rgba(0, 0, 0, 0.8),
-    /* Inner shadow for 3D depth */
-    4px 0 20px rgba(255, 255, 255, 0.15);
-  /* Soft outer glow */
-
-  /* Deep black inside the ring */
-  background: radial-gradient(circle at right center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.92) 50%, #000 75%);
-
-  /* Sit behind the products so they orbit ON TOP of the line */
-  z-index: 10;
-}
-
-/* ── Brand Inside Ring ──────────────────────────────────────────────────────── */
-.orbit-brand-inner {
-  position: absolute;
-  /* 
-   * Place it left of the products (which are at x=0). 
-   */
-  left: calc(var(--orbit-radius) * -0.32);
-  top: 0;
-  transform: translate(-50%, -50%);
-
-  /* Stack: name bottom-to-top, logo above */
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 12px;
-
-  pointer-events: none;
-  z-index: 15;
-}
-
-.orbit-brand-logo {
-  /* Sized to fit the full screen height perfectly after rotation */
-  width: 100vh;
-  height: auto;
-  object-fit: contain;
-  /* Rotate 90 degrees left and scale up. 
-     A scale of ~2.4 - 2.5 here perfectly matches the visual size of the 2.8 scale 
-     we used before the padding was cropped out! */
-  transform: rotate(-90deg) scale(2.5);
 }

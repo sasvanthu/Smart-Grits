@@ -20,16 +20,12 @@ const STICKER_PRODUCTS: StickerProduct[] = [
   { id: 'ac-3', name: 'Auto Scrubber', slug: 'auto-scrubber-dryer', image: '/brochure-images/ai_auto_scrubber.png' },
 ];
 
-// ─── Tuning Constants ────────────────────────────────────────────────────────
-const SCROLL_SPEED = 0.5;   // slots per second during free scroll
-const ORBIT_R_DESK = 550;   // orbit radius – desktop (larger to prevent collision)
-const ORBIT_R_MOB = 300;   // orbit radius – mobile
-// ─────────────────────────────────────────────────────────────────────────────
+// Speed: slots per second
+const SCROLL_SPEED = 0.45;
 
 interface ProductVisual {
-  x: number;       // px horizontal offset
-  y: number;       // px vertical offset
-  z: number;       // depth hint (larger = closer)
+  y: number;        // vertical offset (px) — products travel up/down
+  z: number;        // depth: positive = toward viewer
   scale: number;
   opacity: number;
   zIndex: number;
@@ -40,13 +36,9 @@ const RevolvingProducts = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [visuals, setVisuals] = useState<ProductVisual[]>([]);
 
-  const scrollRef = useRef(0);          // continuous scroll position (slot units)
+  const scrollRef = useRef(0);
   const rafRef = useRef<number>(0);
   const lastTRef = useRef<number>(0);
-
-  const products = isMobile ? STICKER_PRODUCTS.slice(0, 6) : STICKER_PRODUCTS;
-  const count = products.length;
-  const orbitR = isMobile ? ORBIT_R_MOB : ORBIT_R_DESK;
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -55,65 +47,64 @@ const RevolvingProducts = () => {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  const products = isMobile ? STICKER_PRODUCTS.slice(0, 5) : STICKER_PRODUCTS;
+  const count = products.length;
+
+  // Orbit radius — vertical loop height (tuned to fit inside the red box area)
+  const orbitR = isMobile ? 220 : 300;
+
   const tick = useCallback((ts: number) => {
     const dt = lastTRef.current ? Math.min((ts - lastTRef.current) / 1000, 0.1) : 0;
     lastTRef.current = ts;
 
-    // Continuous, equal-speed scrolling
     scrollRef.current += SCROLL_SPEED * dt;
 
     const newVisuals: ProductVisual[] = products.map((_, i) => {
-      const offset = i - scrollRef.current;
-
-      // Normalise offset to the shortest path around the wheel (-count/2 to +count/2)
-      let o = ((offset % count) + count) % count;
+      // Normalized offset around the loop
+      let o = ((i - scrollRef.current) % count + count) % count;
       if (o > count / 2) o -= count;
 
-      // Convert to angle
-      const angle = (o * 360) / count;
+      // Convert slot offset → angle (0 = front/center, ±180 = back)
+      const angle = (o / count) * 360;
       const rad = (angle * Math.PI) / 180;
 
-      // Create a 2D Clock Dial orbit on the X-Y plane
-      const orbitR = isMobile ? 320 : 500;
-
-      // rad=0 is the 3 o'clock position (rightmost edge of the circle).
-      // As angle increases, it moves around the circle.
+      // Vertical loop: y goes up/down, z goes in/out toward viewer
+      //  - At angle=0 (front):  y=0, z=+orbitR  → closest to viewer
+      //  - At angle=180 (back): y=0, z=-orbitR  → farthest
       const y = Math.sin(rad) * orbitR;
-      // Shift X so the docked product (rad=0) is exactly at x=0.
-      // Other products will curve out to the left (negative X).
-      const x = (Math.cos(rad) - 1) * orbitR;
+      const z = Math.cos(rad) * orbitR;     // +ve = toward viewer
 
-      // Calculate opacity based on distance from the docked position (o=0).
-      // Fade out products as they go around the back of the dial.
-      const dist = Math.abs(o);
-      let rawOpacity = Math.max(0, 1 - (dist / 2.5));
-      let rawScale = 0.45;
+      // Normalize z from [-orbitR, +orbitR] → [0, 1]
+      const zNorm = (z + orbitR) / (2 * orbitR);  // 1 = front, 0 = back
 
-      // Dynamic pop-up for the docking frame
+      // Distance from front dock (angle=0)
+      const dist = Math.abs(o); // 0 = docked, increases as it moves away
+
+      // Pop zone: within 0.5 slots of front
+      const isDocked = dist < 0.15;
+
       let popFactor = 0;
-
       if (dist < 0.15) {
-        // Stay fully enlarged in the dead center
         popFactor = 1;
       } else if (dist < 0.6) {
-        // Smoothly scale up/down as it approaches/leaves the center
-        const mappedDist = (dist - 0.15) / 0.45;
-        popFactor = Math.cos(mappedDist * (Math.PI / 2));
+        const t = (dist - 0.15) / 0.45;
+        popFactor = Math.cos(t * (Math.PI / 2));
       }
 
-      // Add the pop factor to the scale (up to +1.0)
-      rawScale += popFactor * 1.15;
-      // Ensure opacity reaches 1.0 when popped
-      rawOpacity = Math.min(1, rawOpacity + popFactor * 0.5);
+      // Scale: small far away, big when docked
+      const baseScale = 0.3 + zNorm * 0.4;          // 0.3 (back) → 0.7 (front)
+      const scale = baseScale + popFactor * 1.1;      // pops to ~1.8 at front
+
+      // Opacity: invisible at back, full at front
+      const opacity = Math.max(0, zNorm * 1.4 - 0.1);
 
       return {
-        x,
         y,
-        z: 0,
-        scale: rawScale,
-        opacity: rawOpacity,
-        zIndex: Math.round(20 - dist * 5) + Math.round(popFactor * 10),
-        isDocked: dist < 0.15
+        z,
+        scale,
+        opacity: Math.min(1, opacity),
+        zIndex: Math.round(zNorm * 20) + Math.round(popFactor * 15),
+        isDocked,
       };
     });
 
@@ -127,24 +118,10 @@ const RevolvingProducts = () => {
   }, [tick]);
 
   return (
-    <div
-      className="revolving-orbit"
-      style={{ '--orbit-radius': `${orbitR}px` } as React.CSSProperties}
-    >
-      {/* Background glow */}
-      <div className="orbit-glow" />
+    <div className="revolving-orbit">
+      {/* Subtle ambient glow at the dock position */}
+      <div className="orbit-dock-glow" />
 
-      {/* 3D Ring has been removed to focus entirely on the metallic separator */}
-      
-      {/* Metallic separator and dark void that acts as the orbit curve */}
-      <div className="orbit-separator" />
-
-      {/* Company logo inside the ring */}
-      <div className="orbit-brand-inner">
-        <img src="/smart_grits_logo_white_transparent.png" alt="Smart Grits Logo" className="orbit-brand-logo" />
-      </div>
-
-      {/* Products — positioned via inline JS-computed styles */}
       {products.map((product, i) => {
         const v = visuals[i];
         if (!v) return null;
@@ -154,18 +131,13 @@ const RevolvingProducts = () => {
             key={product.id}
             className={`orbit-item-js ${v.isDocked ? 'is-docked' : ''}`}
             style={{
-              // Place this zero-size anchor exactly at the orbit point.
-              // .product-sticker uses translate(-50%,-50%) to center itself here.
-              left: `calc(50% + ${v.x}px)`,
+              // Anchor at the center of the orbit container
+              left: '50%',
               top: `calc(50% + ${v.y}px)`,
-              // Scale from center so the center stays pinned to the ring
-              transform: `scale(${v.scale})`,
-              transformOrigin: 'center center',
+              transform: `translate(-50%, -50%) scale(${v.scale})`,
               opacity: v.opacity,
               zIndex: v.zIndex,
               position: 'absolute',
-              width: 0,
-              height: 0,
             }}
           >
             <Link
@@ -173,7 +145,7 @@ const RevolvingProducts = () => {
               className="product-sticker no-cursor-lock"
               style={{ pointerEvents: 'auto' }}
             >
-              <div className="sticker-image-wrapper">
+              <div className={`sticker-image-wrapper ${v.isDocked ? 'is-docked' : ''}`}>
                 <img
                   src={product.image}
                   alt={product.name}
@@ -181,7 +153,7 @@ const RevolvingProducts = () => {
                   draggable={false}
                 />
               </div>
-              <span className="sticker-label">{product.name}</span>
+              <span className={`sticker-label ${v.isDocked ? 'is-docked' : ''}`}>{product.name}</span>
             </Link>
           </div>
         );
