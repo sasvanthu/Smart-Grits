@@ -50,8 +50,8 @@ const RevolvingProducts = () => {
   const products = isMobile ? STICKER_PRODUCTS.slice(0, 5) : STICKER_PRODUCTS;
   const count = products.length;
 
-  // Orbit radius — vertical loop height (tuned to fit inside the red box area)
-  const orbitR = isMobile ? 220 : 300;
+  // Orbit radius — vertical loop height
+  const orbitR = isMobile ? 280 : 450;
 
   const tick = useCallback((ts: number) => {
     const dt = lastTRef.current ? Math.min((ts - lastTRef.current) / 1000, 0.1) : 0;

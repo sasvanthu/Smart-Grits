@@ -7,9 +7,9 @@
  */
 .revolving-orbit {
   position: absolute;
-  /* Dock zone sits in the left-center block the user indicated */
+  /* Dock zone sits somewhat left of the screen */
   top: 50%;
-  left: 14%;
+  left: 18%;
   transform: translate(-50%, -50%);
   width: 0;
   height: 0;
@@ -18,13 +18,13 @@
 
 @media (max-width: 1280px) {
   .revolving-orbit {
-    left: 18%;
+    left: 20%;
   }
 }
 
 @media (max-width: 1024px) {
   .revolving-orbit {
-    left: 22%;
+    left: 24%;
   }
 }
 
@@ -83,7 +83,6 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  transform: translate(-50%, -50%);
   cursor: pointer;
   text-decoration: none;
   pointer-events: inherit;
