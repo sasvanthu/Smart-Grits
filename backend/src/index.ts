@@ -52,21 +52,25 @@ app.get('/', (req: Request, res: Response) => {
 
 const numCPUs = os.cpus().length;
 
-if (cluster.isPrimary && process.env.NODE_ENV === 'production') {
-  console.log(`Primary ${process.pid} is running`);
-  
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+const isVercel = process.env.VERCEL === '1';
 
-  cluster.on('exit', (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died, restarting...`);
-    cluster.fork();
-  });
-} else {
-  app.listen(port, () => {
-    console.log(`[server]: Worker ${process.pid} started. Server is running at http://localhost:${port}`);
-  });
+if (!isVercel) {
+  if (cluster.isPrimary && process.env.NODE_ENV === 'production') {
+    console.log(`Primary ${process.pid} is running`);
+    
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died, restarting...`);
+      cluster.fork();
+    });
+  } else {
+    app.listen(port, () => {
+      console.log(`[server]: Worker ${process.pid} started. Server is running at http://localhost:${port}`);
+    });
+  }
 }
 
 export default app;
