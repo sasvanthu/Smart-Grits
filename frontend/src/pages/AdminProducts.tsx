@@ -1,3 +1,4 @@
+import { useFetchWithAuth } from '../hooks/useFetchWithAuth';
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 
@@ -18,6 +19,8 @@ interface Category {
 }
 
 const AdminProducts = () => {
+  const fetchWithAuth = useFetchWithAuth();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +41,8 @@ const AdminProducts = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/products');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/products`);
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to fetch products');
       setProducts(Array.isArray(data) ? data : []);
@@ -51,7 +55,8 @@ const AdminProducts = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/categories');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/categories`);
       const data = await response.json();
       if (response.ok && Array.isArray(data)) setCategories(data);
     } catch (err) {
@@ -87,7 +92,8 @@ const AdminProducts = () => {
 
     try {
       setUploadingImage(true);
-      const response = await fetch('http://localhost:5000/api/upload', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/upload`, {
         method: 'POST',
         body: data,
       });
@@ -104,9 +110,10 @@ const AdminProducts = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       const url = isEditing 
-        ? `http://localhost:5000/api/products/${editingId}`
-        : 'http://localhost:5000/api/products';
+        ? `${apiUrl}/api/products/${editingId}`
+        : `${apiUrl}/api/products`;
         
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -117,7 +124,7 @@ const AdminProducts = () => {
         is_featured: false
       };
 
-      const response = await fetch(url, {
+      const response = await fetchWithAuth(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -135,7 +142,8 @@ const AdminProducts = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/products/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Failed to delete product');
@@ -211,7 +219,7 @@ const AdminProducts = () => {
 
       {error && <div className="bg-red-100 text-red-600 p-3 rounded mb-4">{error}</div>}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b">
             <tr>

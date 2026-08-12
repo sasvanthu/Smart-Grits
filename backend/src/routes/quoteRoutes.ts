@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import nodemailer from 'nodemailer';
 import { supabase } from '../config/supabase';
+import { requireAuth } from '../middlewares/authMiddleware';
 
 const router = Router();
 
 // GET summary stats for dashboard
-router.get('/stats', async (req, res) => {
+router.get('/stats', requireAuth, async (req, res) => {
   try {
     const { count: totalProducts, error: err1 } = await supabase
       .from('products')
@@ -40,7 +41,7 @@ router.get('/stats', async (req, res) => {
 });
 
 // GET all quote requests
-router.get('/', async (req, res) => {
+router.get('/', requireAuth, async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('quote_requests')
@@ -127,7 +128,8 @@ router.post('/', async (req, res) => {
       });
 
       const mailOptions = {
-        from: `"${fullName}" <${email}>`,
+        // 'from' MUST be the SMTP user's address for deliverability
+        from: `"SmartGrits Website" <${process.env.SMTP_USER}>`,
         to: process.env.ADMIN_EMAIL || 'info@smartgrit.in',
         replyTo: email,
         subject: `New Quote Request from ${fullName}`,
@@ -164,7 +166,7 @@ Please check the Admin Dashboard Quotes section for product details.
 });
 
 // PATCH a quote request status
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -183,7 +185,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // DELETE a quote request
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     

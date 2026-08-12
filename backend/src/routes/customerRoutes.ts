@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { supabase } from '../config/supabase';
+import { requireAuth } from '../middlewares/authMiddleware';
 
 const router = Router();
 
 // GET all customers
-router.get('/', async (req, res) => {
+router.get('/', requireAuth, async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -19,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST a new customer
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
   try {
     const { full_name, company_name, email, phone, status, notes } = req.body;
     
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update a customer
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     const { full_name, company_name, email, phone, status, notes } = req.body;
@@ -57,7 +58,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE a customer
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     

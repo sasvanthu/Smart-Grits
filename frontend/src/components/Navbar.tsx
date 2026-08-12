@@ -97,13 +97,13 @@ const Navbar = () => {
     <>
 
 
-      <header className="fixed top-0 w-full z-50 pt-4 px-4 sm:px-6 lg:px-8">
+      <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative">
-          <div className="flex justify-between items-center h-16 px-6 bg-gradient-to-r from-white/95 via-neutral-100/90 to-white/80 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/20 rounded-full">
+          <div className="flex justify-between items-center h-14 md:h-16 px-4 md:px-6 bg-gradient-to-r from-white/95 via-neutral-100/90 to-white/80 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/20 rounded-full">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex flex-col">
-                <img src="/smart_grits_logo.png" alt="SmartGrit Logo" className="h-12 w-auto object-contain" />
+                <img src="/smart_grits_logo.png" alt="SmartGrit Logo" className="h-8 md:h-10 lg:h-12 w-auto object-contain" />
               </Link>
             </div>
 

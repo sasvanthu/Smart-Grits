@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { supabase } from '../config/supabase';
+import { requireAuth } from '../middlewares/authMiddleware';
 
 const router = Router();
 
@@ -34,7 +35,7 @@ router.get('/:slug', async (req, res) => {
 });
 
 // Create product
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
   try {
     const { category_id, name, slug, description, features, advantages, is_featured, image_url } = req.body;
     
@@ -61,7 +62,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update product
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     const { category_id, name, slug, description, features, advantages, is_featured, image_url } = req.body;
@@ -91,7 +92,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete product
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
     

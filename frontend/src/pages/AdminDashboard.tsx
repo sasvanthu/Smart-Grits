@@ -1,3 +1,4 @@
+import { useFetchWithAuth } from '../hooks/useFetchWithAuth';
 import { useState, useEffect } from 'react';
 import { Users, FileText, Package, X, Mail, Phone, Building, MessageSquare, Edit3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,6 +29,8 @@ interface Stats {
 }
 
 const AdminDashboard = () => {
+  const fetchWithAuth = useFetchWithAuth();
+
   const [stats, setStats] = useState<Stats | null>(null);
   const [quotes, setQuotes] = useState<QuoteRequest[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,8 +44,8 @@ const AdminDashboard = () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         const [statsRes, quotesRes] = await Promise.all([
-          fetch(`${apiUrl}/api/quotes/stats`),
-          fetch(`${apiUrl}/api/quotes`)
+          fetchWithAuth(`${apiUrl}/api/quotes/stats`),
+          fetchWithAuth(`${apiUrl}/api/quotes`)
         ]);
         const statsData = await statsRes.json();
         const quotesData = await quotesRes.json();
@@ -62,7 +65,7 @@ const AdminDashboard = () => {
     setIsUpdating(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/quotes/${id}`, {
+      const response = await fetchWithAuth(`${apiUrl}/api/quotes/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -301,7 +304,7 @@ const AdminDashboard = () => {
                 <div>
                   <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Requested Products ({selectedQuote.quote_items?.length || 0})</h4>
                   {selectedQuote.quote_items && selectedQuote.quote_items.length > 0 ? (
-                    <div className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+                    <div className="bg-white border border-gray-100 rounded-xl overflow-x-auto shadow-sm">
                       <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-100">
                           <tr>

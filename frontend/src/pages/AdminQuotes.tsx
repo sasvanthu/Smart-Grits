@@ -1,3 +1,4 @@
+import { useFetchWithAuth } from '../hooks/useFetchWithAuth';
 import { useState, useEffect } from 'react';
 import { Eye, Trash2 } from 'lucide-react';
 
@@ -19,6 +20,8 @@ interface Quote {
 }
 
 const AdminQuotes = () => {
+  const fetchWithAuth = useFetchWithAuth();
+
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +32,8 @@ const AdminQuotes = () => {
   const fetchQuotes = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/quotes');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/quotes`);
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to fetch');
       setQuotes(Array.isArray(data) ? data : []);
@@ -43,7 +47,8 @@ const AdminQuotes = () => {
 
   const updateStatus = async (id: string, status: string) => {
     try {
-      await fetch(`http://localhost:5000/api/quotes/${id}`, {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await fetchWithAuth(`${apiUrl}/api/quotes/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
@@ -57,7 +62,8 @@ const AdminQuotes = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this order?')) return;
     try {
-      await fetch(`http://localhost:5000/api/quotes/${id}`, { method: 'DELETE' });
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await fetchWithAuth(`${apiUrl}/api/quotes/${id}`, { method: 'DELETE' });
       fetchQuotes();
     } catch (err) {
       console.error(err);
@@ -67,7 +73,7 @@ const AdminQuotes = () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Orders</h1>
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b">
             <tr>

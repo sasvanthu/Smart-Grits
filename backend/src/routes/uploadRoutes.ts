@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import multer from 'multer';
 import { supabase } from '../config/supabase';
+import { requireAuth } from '../middlewares/authMiddleware';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', requireAuth, upload.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No image file provided' });

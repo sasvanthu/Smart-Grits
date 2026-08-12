@@ -12,6 +12,7 @@ import customerRoutes from './routes/customerRoutes';
 import galleryRoutes from './routes/galleryRoutes';
 import uploadRoutes from './routes/uploadRoutes';
 import contactRoutes from './routes/contactRoutes';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ app.use('/api/customers', customerRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('SmartGrit API is running');

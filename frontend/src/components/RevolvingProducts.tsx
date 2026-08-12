@@ -117,10 +117,23 @@ const RevolvingProducts = () => {
     return () => cancelAnimationFrame(rafRef.current);
   }, [tick]);
 
+  if (isMobile) {
+    return null;
+  }
+
   return (
-    <div className="revolving-orbit">
+    <div
+      className="revolving-orbit"
+      style={{ '--orbit-radius': `${orbitR}px` } as React.CSSProperties}
+    >
       {/* Subtle ambient glow at the dock position */}
       <div className="orbit-dock-glow" />
+
+      {/* Metallic UI Outline of the dial */}
+      <div className="metallic-dial" />
+
+      {/* Rectangular target frame where the product pops up */}
+      <div className="orbit-dock-frame"></div>
 
       {products.map((product, i) => {
         const v = visuals[i];
@@ -146,6 +159,10 @@ const RevolvingProducts = () => {
               style={{ pointerEvents: 'auto' }}
             >
               <div className={`sticker-image-wrapper ${v.isDocked ? 'is-docked' : ''}`}>
+                <div className="target-corner t-tl" />
+                <div className="target-corner t-tr" />
+                <div className="target-corner t-bl" />
+                <div className="target-corner t-br" />
                 <img
                   src={product.image}
                   alt={product.name}

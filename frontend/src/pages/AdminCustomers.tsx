@@ -1,3 +1,4 @@
+import { useFetchWithAuth } from '../hooks/useFetchWithAuth';
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Mail } from 'lucide-react';
 
@@ -12,6 +13,8 @@ interface Customer {
 }
 
 const AdminCustomers = () => {
+  const fetchWithAuth = useFetchWithAuth();
+
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +25,8 @@ const AdminCustomers = () => {
   const fetchCustomers = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/customers');
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetchWithAuth(`${apiUrl}/api/customers`);
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to fetch');
       setCustomers(Array.isArray(data) ? data : []);
@@ -35,9 +39,10 @@ const AdminCustomers = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this customer?')) return;
+    if (!confirm('Are you sure you want to delete this customer record?')) return;
     try {
-      await fetch(`http://localhost:5000/api/customers/${id}`, { method: 'DELETE' });
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await fetchWithAuth(`${apiUrl}/api/customers/${id}`, { method: 'DELETE' });
       fetchCustomers();
     } catch (err) {
       console.error(err);
@@ -54,7 +59,7 @@ const AdminCustomers = () => {
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b">
             <tr>
