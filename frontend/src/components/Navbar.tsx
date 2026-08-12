@@ -68,7 +68,7 @@ const NAV_LINKS: NavItem[] = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
+
   const location = useLocation();
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useFetchWithAuth } from '../hooks/useFetchWithAuth';
 import { useState, useEffect } from 'react';
-import { Mail, CheckCircle, Trash2 } from 'lucide-react';
+import { Mail, CheckCircle } from 'lucide-react';
 
 interface ContactMessage {
   id: string;
