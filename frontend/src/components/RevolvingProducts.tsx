@@ -93,7 +93,7 @@ const RevolvingProducts = () => {
 
       // Scale: small far away, big when docked
       const baseScale = 0.3 + zNorm * 0.4;          // 0.3 (back) → 0.7 (front)
-      const scale = baseScale + popFactor * 1.1;      // pops to ~1.8 at front
+      const scale = baseScale + popFactor * 0.6;      // pops to ~1.3 at front
 
       // Opacity: invisible at back, full at front
       const opacity = Math.max(0, zNorm * 1.4 - 0.1);
