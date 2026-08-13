@@ -62,7 +62,6 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
           <p>&copy; {new Date().getFullYear()} SmartGrit Industrial Solutions. All rights reserved.</p>
-          <p className="mt-2 text-xs">Formerly Kongrit Polishing System</p>
         </div>
       </div>
     </footer>

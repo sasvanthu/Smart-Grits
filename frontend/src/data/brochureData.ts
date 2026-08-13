@@ -1,6 +1,5 @@
-// Central data file derived from Kongrit/SmartGrit Brochure - 17-10-22
+// Central data file derived from SmartGrit Brochure - 17-10-22
 // All product data, descriptions, and company info extracted from the official brochure.
-// Company name updated from "Kongrit" to "SmartGrit".
 
 export const COMPANY_INFO = {
   name: 'SmartGrit Polishing System',
